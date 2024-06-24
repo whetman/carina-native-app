@@ -12,4 +12,6 @@ public class HomePageBase extends AbstractPage {
     public HomePageBase(WebDriver driver) {
         super(driver);
     }
+
+
 }
