@@ -10,5 +10,4 @@ public class OpenAppTest extends AbstractTest{
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         homePage.open();
     }
-    //test
 }
