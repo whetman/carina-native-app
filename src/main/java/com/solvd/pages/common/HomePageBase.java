@@ -2,7 +2,6 @@ package com.solvd.pages.common;
 
 import com.solvd.components.Header;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
@@ -16,25 +15,19 @@ public class HomePageBase extends AbstractPage implements IMobileUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePageBase.class);
 
-    //xpath to be changed!
-    @FindBy(xpath = "//android.view.View[@text=\"Nagłówek\"]/android.view.View/android.view.View/android.view.View[2]")
+    //xpath to be changed?
+    @FindBy(xpath = "//android.view.View[@text=\"Nagłówek\"]")
     private Header header;
-
-    @FindBy(className = "android.widget.Image")
-    private ExtendedWebElement iconLogo;
 
     public HomePageBase(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.iconLogo);
+        setUiLoadedMarker(this.header);
     }
 
     public Header getHeader() {
+        waitUntil(elementToBeClickable(this.header), 30);
         return header;
     }
 
-    public ExtendedWebElement getIconLogo() {
-        waitUntil(elementToBeClickable(this.iconLogo), 10);
-        return iconLogo;
-    }
 }

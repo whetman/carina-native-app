@@ -1,5 +1,6 @@
 package com.solvd.tests;
 
+import com.solvd.components.Header;
 import com.solvd.pages.common.HomePageBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,8 +17,8 @@ public class OpenAppTest extends AbstractTest {
 
         homePage.isPageOpened();
 
-        boolean displayed = homePage.getIconLogo().isDisplayed();
-        assertTrue("Icon logo is not displayed", displayed);
+        Header header = homePage.getHeader();
+        assertTrue("Header is not displayed", header.isVisible());
 
         sa.assertAll();
     }
