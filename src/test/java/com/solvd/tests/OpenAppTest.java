@@ -9,9 +9,8 @@ import static org.testng.AssertJUnit.assertTrue;
 
 public class OpenAppTest extends AbstractTest {
 
-    //still in progress!
     @Test
-    public void validateAppIsOpening() throws InterruptedException {
+    public void validateAppIsOpening() {
         SoftAssert sa = new SoftAssert();
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
 
