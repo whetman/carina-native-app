@@ -1,7 +1,8 @@
-package com.solvd.tests;
+package com.solvd.tests.pandora;
 
-import com.solvd.components.Header;
-import com.solvd.pages.common.HomePageBase;
+import com.solvd.pandora.components.android.Header;
+import com.solvd.pandora.pages.common.HomePageBase;
+import com.solvd.tests.AbstractTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
