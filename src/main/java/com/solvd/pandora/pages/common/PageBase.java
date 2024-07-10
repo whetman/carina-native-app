@@ -12,7 +12,6 @@ public abstract class PageBase extends AbstractPage implements IMobileUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PageBase.class);
 
-    //xpath to be changed?
     @FindBy(xpath = "//android.view.View[@text=\"Nagłówek\"]")
     private Header header;
 

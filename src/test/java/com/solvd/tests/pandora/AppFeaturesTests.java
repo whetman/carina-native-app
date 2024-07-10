@@ -2,7 +2,9 @@ package com.solvd.tests.pandora;
 
 import com.solvd.pandora.pages.common.HomePageBase;
 import com.solvd.pandora.pages.common.MyAccountPageBase;
+import com.solvd.pandora.pages.common.WelcomePageBase;
 import com.solvd.tests.AbstractTest;
+import com.zebrunner.carina.utils.R;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -16,9 +18,11 @@ public class AppFeaturesTests extends AbstractTest {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
 
         homePage.isPageOpened();
-//"kojanwalski1990@gmail.com", "K0w4l4k1!"
+
         MyAccountPageBase myAccountPageBase = homePage.getHeader().clickLoginButton();
-        myAccountPageBase.login("kojanwalski1990@gmail.com", "K0w4l4k1!");
+        WelcomePageBase welcomePage = myAccountPageBase.login(R.TESTDATA.get("email"), R.TESTDATA.get("password"));
+
+        welcomePage.isPageOpened();
 
     }
 }

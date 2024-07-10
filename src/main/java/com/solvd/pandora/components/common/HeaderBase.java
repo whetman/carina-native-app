@@ -22,10 +22,11 @@ public abstract class HeaderBase extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public MyAccountPageBase clickLoginButton() {
+    public MyAccountPageBase clickLoginButton(){
         LOGGER.info("login()");
-        waitUntil(elementToBeClickable(this.loginButton), 60);
-        LOGGER.info("LOGIN BUTTON: " + loginButton.isVisible());
+        LOGGER.info("1. LOGIN BUTTON: " + loginButton.isVisible());
+        waitUntil(elementToBeClickable(this.loginButton), 90);
+        LOGGER.info("2. LOGIN BUTTON 2: " + loginButton.isVisible());
         loginButton.click();
         return initPage(getDriver(), MyAccountPageBase.class);
     }
