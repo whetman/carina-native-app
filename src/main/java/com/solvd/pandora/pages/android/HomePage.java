@@ -1,6 +1,6 @@
-package com.solvd.pages.android;
+package com.solvd.pandora.pages.android;
 
-import com.solvd.pages.common.HomePageBase;
+import com.solvd.pandora.pages.common.HomePageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import org.openqa.selenium.WebDriver;
 
