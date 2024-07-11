@@ -12,13 +12,6 @@ public abstract class AbstractTest implements IAbstractTest {
 
     private WebDriver driver;
 
-//    public MyAccountPageBase login(String login, String password){
-//        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
-//        MyAccountPageBase myAccountPage = homePage.getHeader().login();
-////        MyAccountPageBase myAccountPageLooged = myAccountPage.login(login, password);
-//        return initPage(getDriver(), MyAccountPageBase.class);
-//    }
-
     @AfterClass
     public void tearDown() {
         if (driver != null) {
