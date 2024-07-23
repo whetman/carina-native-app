@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = RightMenuPageBase.class)
 public class RightMenuPage extends RightMenuPageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(RightMenuPage.class);
-
         public RightMenuPage(WebDriver driver) {
         super(driver);
         LOGGER.info("RightMenuPage()");

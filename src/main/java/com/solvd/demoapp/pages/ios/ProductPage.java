@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPageBase.class)
 public class ProductPage extends ProductPageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductPage.class);
-
     public ProductPage(WebDriver driver) {
         super(driver);
     }
