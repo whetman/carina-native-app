@@ -19,4 +19,13 @@ public abstract class RightMenuPageBase extends PageBase {
         setUiLoadedMarker(this.loginOption);
     }
 
+    public LoginPageBase goToLoginPage(){
+            LOGGER.info("goToLoginPage()");
+            loginOption.click();
+            return initPage(getDriver(), LoginPageBase.class);
+    }
+
+    public ExtendedWebElement getLoginOption() {
+        return loginOption;
+    }
 }

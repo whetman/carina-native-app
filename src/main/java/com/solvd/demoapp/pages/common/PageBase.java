@@ -1,6 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.zebrunner.carina.utils.ios.IOSUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class PageBase extends AbstractPage implements IMobileUtils {
+public abstract class PageBase extends AbstractPage implements IOSUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(PageBase.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Catalog-tab-item\"`]")
@@ -24,7 +24,6 @@ public abstract class PageBase extends AbstractPage implements IMobileUtils {
         super(driver);
     }
 
-    //czy zadziala str jesli extenduje PageBase, czy to nie maslo maslane xd
     public CatalogPageBase clickCatalogButton(){
         LOGGER.info("clickCatalogButton()");
         catalogButton.click();

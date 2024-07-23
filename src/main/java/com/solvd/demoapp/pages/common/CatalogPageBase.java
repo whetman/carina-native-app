@@ -7,12 +7,18 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+import java.util.Random;
+
 public abstract class CatalogPageBase extends PageBase {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CatalogPageBase.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"Catalog-screen\"`]")
     private ExtendedWebElement catalogScreen;
+
+    @ExtendedFindBy(iosPredicate = "name == \"ProductItem\"")
+    private List<ExtendedWebElement> products;
 
     public CatalogPageBase(WebDriver driver) {
         super(driver);
@@ -21,7 +27,15 @@ public abstract class CatalogPageBase extends PageBase {
         setUiLoadedMarker(this.catalogScreen);
     }
 
-    public ExtendedWebElement getCatalogScreen() {
-        return catalogScreen;
+    private ProductPageBase clickProduct(int index){
+        products.get(index).click();
+        return initPage(getDriver(), ProductPageBase.class);
+    }
+
+    public ProductPageBase addRandomProductToCart() {
+        Random rand = new Random();
+        int index = rand.nextInt(products.size());
+        LOGGER.info("addRandomProductToCart(" + index + ")");
+        return clickProduct(index);
     }
 }
