@@ -19,7 +19,7 @@ public abstract class CartPageBase extends PageBase {
     @ExtendedFindBy(accessibilityId = "No Items")
     private ExtendedWebElement noItemsMessage;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"Cart-screen\"`]/XCUIElementTypeOther[2]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"Cart-screen\"`]")
     private ExtendedWebElement cartScreen;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"Remove Item\"`]")
