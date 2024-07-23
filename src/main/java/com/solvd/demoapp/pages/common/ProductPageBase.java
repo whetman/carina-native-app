@@ -40,8 +40,7 @@ public abstract class ProductPageBase extends PageBase{
     public CartPageBase addDefaultToCartAndGoToCart(){
         LOGGER.info("addDefaultToCartAndGoToCart()");
         clickAddToCartButton();
-        clickCartButton();
-        return initPage(getDriver(), CartPageBase.class);
+        return bottomMenu.clickCartButton();
     }
 
     public ProductPageBase addDefaultToCartAndGoBack(){
