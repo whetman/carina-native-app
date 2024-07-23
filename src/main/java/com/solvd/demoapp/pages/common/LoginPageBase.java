@@ -13,12 +13,10 @@ public abstract class LoginPageBase extends PageBase{
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Login\"`]")
     private ExtendedWebElement loginButton;
 
-    //todo change locator if possible
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[1]")
+    @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeTextField\"")
     private ExtendedWebElement userNameField;
 
-    //todo change locator if possible
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]/XCUIElementTypeSecureTextField")
+    @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeSecureTextField\"")
     private ExtendedWebElement passwordField;
 
     public LoginPageBase(WebDriver driver) {

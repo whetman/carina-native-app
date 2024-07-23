@@ -12,17 +12,6 @@ public abstract class ProductPageBase extends PageBase{
 
     @ExtendedFindBy(iosPredicate = "name == \"AddToCart\"")
     private ExtendedWebElement addToCartButton;
-//    todo change locators if possible
-//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
-    private ExtendedWebElement rating;
-//    todo change locator if possible
-//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
-    private ExtendedWebElement colorsAvailable; //list +enums
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
-    private ExtendedWebElement quantityButtons; //component? + -
 
     @ExtendedFindBy(accessibilityId = "Price")
     private ExtendedWebElement price;
@@ -40,7 +29,7 @@ public abstract class ProductPageBase extends PageBase{
     public CartPageBase addDefaultToCartAndGoToCart(){
         LOGGER.info("addDefaultToCartAndGoToCart()");
         clickAddToCartButton();
-        return bottomMenu.clickCartButton();
+        return clickCartButton();
     }
 
     public ProductPageBase addDefaultToCartAndGoBack(){
