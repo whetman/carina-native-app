@@ -1,5 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
+import com.solvd.demoapp.components.product.Product;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -18,7 +19,7 @@ public abstract class CatalogPageBase extends PageBase {
     private ExtendedWebElement catalogScreen;
 
     @ExtendedFindBy(iosPredicate = "name == \"ProductItem\"")
-    private List<ExtendedWebElement> products;
+    private List<Product> products;
 
     public CatalogPageBase(WebDriver driver) {
         super(driver);

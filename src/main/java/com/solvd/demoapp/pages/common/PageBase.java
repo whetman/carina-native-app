@@ -8,6 +8,11 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * I am not using component for buttons (caralog, cart, more) because bottom menu has different locator on each page
+ * but locators for buttons are the same for all pages
+ */
+
 public abstract class PageBase extends AbstractPage implements IOSUtils {
     private static final Logger LOGGER = LoggerFactory.getLogger(PageBase.class);
 
