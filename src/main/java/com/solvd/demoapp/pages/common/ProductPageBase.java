@@ -75,9 +75,11 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return okButton;
     }
 
-    private Map<Colors, Boolean> colorsToChoose(){
+    private Map<Colors, Boolean> colorsToChoose() {
         LOGGER.info("colorsToChoose()");
         Map<Colors, Boolean> availableColors = new HashMap<>();
+        Boolean isBlackAvailable = color.getColorBlack().isVisible();
+        availableColors.putIfAbsent(Colors.BLACK, isBlackAvailable);
         Boolean isGreenAvailable = color.getColorGreen().isVisible();
         availableColors.putIfAbsent(Colors.GREEN, isGreenAvailable);
         Boolean isBlueAvailable = color.getColorBlue().isVisible();
@@ -87,36 +89,22 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return availableColors;
     }
 
-    //todo fix, so it's not hardcoded (when new color added/color removed)
-    public boolean selectColor() {
+    public boolean selectColor(Colors chosenColor) {
         LOGGER.info("selectColor()");
         boolean isColorChosen = false;
         Map<Colors, Boolean> colorsBooleanMap = colorsToChoose();
-        Random rand = new Random();
-        int index = rand.nextInt(colorsBooleanMap.size());
-        switch(index){
-            case 1:
-                if(colorsBooleanMap.containsKey(Colors.BLUE) && colorsBooleanMap.get(Colors.BLUE)){
-                    color.getColorBlue().click();
-                    isColorChosen = true;
-                }
-                break;
-            case 2:
-                if(colorsBooleanMap.containsKey(Colors.GREEN) && colorsBooleanMap.get(Colors.GREEN)){
-                    color.getColorGreen().click();
-                    isColorChosen = true;
-                }
-                break;
-            case 3:
-                if(colorsBooleanMap.containsKey(Colors.GRAY) && colorsBooleanMap.get(Colors.GRAY)){
-                    color.getColorGray().click();
-                    isColorChosen = true;
-                }
-                break;
-            default:
-                color.getColorBlack().click();
-                isColorChosen = true;
-                break;
+
+        if (colorsBooleanMap.get(chosenColor)) {
+            switch (chosenColor) {
+                case Colors.BLUE -> color.getColorBlue().click();
+                case Colors.GRAY -> color.getColorGray().click();
+                case Colors.GREEN -> color.getColorGreen().click();
+                default -> color.getColorBlack().click();
+            }
+            isColorChosen = true;
+        } else {
+            color.getColorBlack().click();
+            isColorChosen = true;
         }
         return isColorChosen;
     }
@@ -128,7 +116,14 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return quantity.clickPlus(number);
     }
 
-    public void changeQuantityRemove() {
-
+    //todo fix
+    public boolean changeQuantityRemove() {
+        LOGGER.info("changeQuantityRemove()");
+        String value = quantity.getAmount().getCssValue("value");
+        if (Integer.parseInt(value) > 0) {
+            Random rand = new Random();
+            int number = rand.nextInt(Integer.parseInt(value));
+            return quantity.clickMinus(number);
+        } else return false;
     }
 }

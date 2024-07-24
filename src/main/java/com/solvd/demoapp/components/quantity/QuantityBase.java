@@ -30,7 +30,6 @@ public class QuantityBase extends AbstractUIObject {
             throw new IllegalArgumentException("Number must be grater that 0");
         }
         String value = amount.getAttribute("value");
-        LOGGER.info("VALUE: " + value);
         for(int i = 0; i < number; i++){
             plusButton.click();
         }
@@ -38,13 +37,20 @@ public class QuantityBase extends AbstractUIObject {
         return Integer.valueOf(changedValue) - Integer.valueOf(value) == number;
     }
 
-    public void clickMinus(int number) {
+    public boolean clickMinus(int number) {
         LOGGER.info("clickMinus(" + number + ")");
         if(number < 0){
             throw new IllegalArgumentException("Number must be grater that 0");
         }
+        String value = amount.getAttribute("value");
         for(int i = 0; i < number; i++){
             minusButton.click();
         }
+        String changedValue = amount.getAttribute("value");
+        return changedValue + number == value;
+    }
+
+    public ExtendedWebElement getAmount() {
+        return amount;
     }
 }

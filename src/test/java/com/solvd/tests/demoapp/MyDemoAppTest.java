@@ -1,5 +1,6 @@
 package com.solvd.tests.demoapp;
 
+import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
@@ -51,10 +52,12 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateChangingProductProperties() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
-        boolean isColorChanged = productPage.selectColor();
+        boolean isColorChanged = productPage.selectColor(Colors.BLUE);
         assertTrue(isColorChanged, "Color was not changed successfully");
-        boolean isQuantityChanged = productPage.changeQuantityAdd();
-        assertTrue(isQuantityChanged, "Quantity was not changed successfully");
+        boolean isQuantityChangedPlus = productPage.changeQuantityAdd();
+        assertTrue(isQuantityChangedPlus, "Quantity was not added successfully");
+        boolean isQuantityChangedMinus = productPage.changeQuantityRemove();
+        assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
     }
 
 }
