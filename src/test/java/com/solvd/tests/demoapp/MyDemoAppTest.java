@@ -46,6 +46,7 @@ public class MyDemoAppTest extends AbstractTest {
         okButtonProduct.click();
     }
 
+    //todo in progress
     @Test(testName = "#TC0004", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete some of them from the cart")
     public void validateChangingProductProperties() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
