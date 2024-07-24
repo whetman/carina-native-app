@@ -15,7 +15,7 @@ import static org.testng.Assert.assertTrue;
 public class MyDemoAppTest extends AbstractTest {
 
     @Test(testName = "#TC0001", description = "Validate that user can log in")
-    public void validateLogging(){
+    public void validateLogging() {
         //preconditions - user is logged - logging doesn't work on this app because of the broken keyboard feature!
         //it also doesn't work while buying!
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
@@ -26,7 +26,7 @@ public class MyDemoAppTest extends AbstractTest {
     }
 
     @Test(testName = "#TC0002", description = "Validate that not logged user can add product to the cart and delete it")
-    public void validateAddingToCart(){
+    public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.addRandomProductToCart();
         CartPageBase cartPage = productPage.addDefaultToCartAndGoToCart();
@@ -35,7 +35,7 @@ public class MyDemoAppTest extends AbstractTest {
     }
 
     @Test(testName = "#TC0003", description = "Validate that not logged user can rate product both on the catalog and on the product page")
-    public void validateRating(){
+    public void validateRating() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ExtendedWebElement okButtonCatalog = catalogPage.rateRandomProduct();
         assertTrue(okButtonCatalog.isDisplayed(), "OK button on catalog page is not displayed");
@@ -44,6 +44,14 @@ public class MyDemoAppTest extends AbstractTest {
         ExtendedWebElement okButtonProduct = productPage.rateProduct();
         assertTrue(okButtonProduct.isDisplayed(), "OK button on product page is not displayed");
         okButtonProduct.click();
+    }
+
+    @Test(testName = "#TC0004", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete some of them from the cart")
+    public void validateChangingProductProperties() {
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        ProductPageBase productPage = catalogPage.clickRandomProduct();
+        boolean isColorChanged = productPage.selectColor();
+        assertTrue(isColorChanged, "Color was not changed successfully");
     }
 
 }
