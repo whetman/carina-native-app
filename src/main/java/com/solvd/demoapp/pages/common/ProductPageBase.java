@@ -1,6 +1,7 @@
 package com.solvd.demoapp.pages.common;
 
 import com.solvd.demoapp.components.colors.Color;
+import com.solvd.demoapp.components.quantity.Quantity;
 import com.solvd.demoapp.components.rating.Rating;
 import com.solvd.demoapp.constants.Colors;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -33,6 +34,10 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
     private Color color;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
+            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
+    private Quantity quantity;
 
     public ProductPageBase(WebDriver driver) {
         super(driver);
@@ -74,18 +79,11 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         LOGGER.info("colorsToChoose()");
         Map<Colors, Boolean> availableColors = new HashMap<>();
         Boolean isGreenAvailable = color.getColorGreen().isVisible();
-        LOGGER.info("IS GREEN DISPLAYED: " + isGreenAvailable);
         availableColors.putIfAbsent(Colors.GREEN, isGreenAvailable);
         Boolean isBlueAvailable = color.getColorBlue().isVisible();
-        LOGGER.info("IS BLUE DISPLAYED: " + isBlueAvailable);
         availableColors.putIfAbsent(Colors.BLUE, isBlueAvailable);
-        Boolean isBlackAvailable = color.getColorBlack().isVisible();
-        LOGGER.info("IS BLACK DISPLAYED: " + isBlackAvailable);
-        availableColors.putIfAbsent(Colors.BLACK, isBlackAvailable);
         Boolean isGrayAvailable = color.getColorGray().isVisible();
-        LOGGER.info("IS GRAY DISPLAYED: " + isGrayAvailable);
         availableColors.putIfAbsent(Colors.GRAY, isGrayAvailable);
-
         return availableColors;
     }
 
@@ -95,9 +93,7 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         boolean isColorChosen = false;
         Map<Colors, Boolean> colorsBooleanMap = colorsToChoose();
         Random rand = new Random();
-        LOGGER.info("SIZE: " + colorsBooleanMap.size());
         int index = rand.nextInt(colorsBooleanMap.size());
-        LOGGER.info("INDEX: " + index);
         switch(index){
             case 1:
                 if(colorsBooleanMap.containsKey(Colors.BLUE) && colorsBooleanMap.get(Colors.BLUE)){
@@ -106,18 +102,12 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
                 }
                 break;
             case 2:
-                if(colorsBooleanMap.containsKey(Colors.BLACK) && colorsBooleanMap.get(Colors.BLACK)){
-                    color.getColorBlack().click();
-                    isColorChosen = true;
-                }
-                break;
-            case 3:
                 if(colorsBooleanMap.containsKey(Colors.GREEN) && colorsBooleanMap.get(Colors.GREEN)){
                     color.getColorGreen().click();
                     isColorChosen = true;
                 }
                 break;
-            case 4:
+            case 3:
                 if(colorsBooleanMap.containsKey(Colors.GRAY) && colorsBooleanMap.get(Colors.GRAY)){
                     color.getColorGray().click();
                     isColorChosen = true;
@@ -129,5 +119,16 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
                 break;
         }
         return isColorChosen;
+    }
+
+    public boolean changeQuantityAdd() {
+        LOGGER.info("changeQuantityAdd()");
+        Random rand = new Random();
+        int number = rand.nextInt(10);
+        return quantity.clickPlus(number);
+    }
+
+    public void changeQuantityRemove() {
+
     }
 }

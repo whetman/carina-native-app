@@ -53,6 +53,8 @@ public class MyDemoAppTest extends AbstractTest {
         ProductPageBase productPage = catalogPage.clickRandomProduct();
         boolean isColorChanged = productPage.selectColor();
         assertTrue(isColorChanged, "Color was not changed successfully");
+        boolean isQuantityChanged = productPage.changeQuantityAdd();
+        assertTrue(isQuantityChanged, "Quantity was not changed successfully");
     }
 
 }
