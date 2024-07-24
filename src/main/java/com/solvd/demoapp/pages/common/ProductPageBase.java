@@ -116,10 +116,9 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return quantity.clickPlus(number);
     }
 
-    //todo fix
     public boolean changeQuantityRemove() {
         LOGGER.info("changeQuantityRemove()");
-        String value = quantity.getAmount().getCssValue("value");
+        String value = quantity.getAmount().getAttribute("value");
         if (Integer.parseInt(value) > 0) {
             Random rand = new Random();
             int number = rand.nextInt(Integer.parseInt(value));

@@ -3,11 +3,13 @@ package com.solvd.demoapp.components.quantity;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import lombok.Getter;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Getter
 public class QuantityBase extends AbstractUIObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuantityBase.class);
 
@@ -34,7 +36,7 @@ public class QuantityBase extends AbstractUIObject {
             plusButton.click();
         }
         String changedValue = amount.getAttribute("value");
-        return Integer.valueOf(changedValue) - Integer.valueOf(value) == number;
+        return Integer.parseInt(changedValue) - Integer.parseInt(value) == number;
     }
 
     public boolean clickMinus(int number) {
@@ -43,14 +45,13 @@ public class QuantityBase extends AbstractUIObject {
             throw new IllegalArgumentException("Number must be grater that 0");
         }
         String value = amount.getAttribute("value");
+        if(number > Integer.parseInt(value)){
+            throw new IllegalArgumentException("Number must be less than existing quantity");
+        }
         for(int i = 0; i < number; i++){
             minusButton.click();
         }
         String changedValue = amount.getAttribute("value");
-        return changedValue + number == value;
-    }
-
-    public ExtendedWebElement getAmount() {
-        return amount;
+        return Integer.parseInt(changedValue) + number == Integer.parseInt(value);
     }
 }
