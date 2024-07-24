@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
  * Each color has unique locator, so I can't make a List of them
  */
 @Getter
-public class ColorBase extends AbstractUIObject {
+public abstract class ColorBase extends AbstractUIObject {
 
     @ExtendedFindBy(accessibilityId = "GreenColorUnSelected Icons")
     private ExtendedWebElement colorGreen;

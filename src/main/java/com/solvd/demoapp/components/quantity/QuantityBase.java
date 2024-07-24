@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Getter
-public class QuantityBase extends AbstractUIObject {
+public abstract class QuantityBase extends AbstractUIObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(QuantityBase.class);
 
     @ExtendedFindBy(accessibilityId = "AddPlus Icons")
