@@ -11,8 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Random;
 
-public abstract class CatalogPageBase extends PageBase {
-
+public abstract class CatalogPageBase extends PageBaseWithOkButton {
     private static final Logger LOGGER = LoggerFactory.getLogger(CatalogPageBase.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"Catalog-screen\"`]")
@@ -28,9 +27,17 @@ public abstract class CatalogPageBase extends PageBase {
         setUiLoadedMarker(this.catalogScreen);
     }
 
-    private ProductPageBase clickProduct(int index){
+    private ProductPageBase clickProduct(int index) {
         products.get(index).click();
         return initPage(getDriver(), ProductPageBase.class);
+    }
+
+    public ProductPageBase clickRandomProduct() {
+        LOGGER.info("clickRandomProduct()");
+        Random rand = new Random();
+        int index = rand.nextInt(products.size());
+        LOGGER.info("clickRandomProduct(" + index + ")");
+        return clickProduct(index);
     }
 
     public ProductPageBase addRandomProductToCart() {
@@ -38,5 +45,14 @@ public abstract class CatalogPageBase extends PageBase {
         int index = rand.nextInt(products.size());
         LOGGER.info("addRandomProductToCart(" + index + ")");
         return clickProduct(index);
+    }
+
+    public ExtendedWebElement rateRandomProduct() {
+        Random rand = new Random();
+        int index = rand.nextInt(products.size());
+        LOGGER.info("rateRandomProduct(" + index + ")");
+        Product product = products.get(index);
+        product.rateProduct();
+        return okButton;
     }
 }

@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * I am not using component for buttons (caralog, cart, more) because bottom menu has different locator on each page
+ * I am not using component for buttons (catalog, cart, more) because bottom menu has different locator on each page
  * but locators for buttons are the same for all pages
  */
 

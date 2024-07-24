@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class LoginPageBase extends PageBase{
+public abstract class LoginPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(LoginPageBase.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Login\"`]")
@@ -25,14 +25,14 @@ public abstract class LoginPageBase extends PageBase{
         setUiLoadedMarker(this.loginButton);
     }
 
-    public void logIn(String username, String password){
+    public void logIn(String username, String password) {
         userNameField.type(username);
         passwordField.type(password);
 
-        LOGGER.info("KEYBOARD: " + isKeyboardShown() );
+        LOGGER.info("KEYBOARD: " + isKeyboardShown());
 
         hideKeyboard();
-        LOGGER.info("KEYBOARD: " + isKeyboardShown() );
+        LOGGER.info("KEYBOARD: " + isKeyboardShown());
 
         loginButton.click();
     }

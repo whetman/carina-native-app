@@ -7,6 +7,7 @@ import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.RightMenuPageBase;
 import com.solvd.tests.AbstractTest;
 import com.zebrunner.carina.utils.R;
+import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -31,6 +32,18 @@ public class MyDemoAppTest extends AbstractTest {
         CartPageBase cartPage = productPage.addDefaultToCartAndGoToCart();
         boolean removed = cartPage.removeRandomItemFromCart();
         assertTrue(removed, "Item was not removed successfully");
+    }
+
+    @Test(testName = "#TC0003", description = "Validate that not logged user can rate product both on the catalog and on the product page")
+    public void validateRating(){
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        ExtendedWebElement okButtonCatalog = catalogPage.rateRandomProduct();
+        assertTrue(okButtonCatalog.isDisplayed(), "OK button on catalog page is not displayed");
+        okButtonCatalog.click();
+        ProductPageBase productPage = catalogPage.clickRandomProduct();
+        ExtendedWebElement okButtonProduct = productPage.rateProduct();
+        assertTrue(okButtonProduct.isDisplayed(), "OK button on product page is not displayed");
+        okButtonProduct.click();
     }
 
 }

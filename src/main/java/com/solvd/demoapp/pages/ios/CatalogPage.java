@@ -9,7 +9,8 @@ import org.slf4j.LoggerFactory;
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CatalogPageBase.class)
 public class CatalogPage extends CatalogPageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(CatalogPage.class);
-        public CatalogPage(WebDriver driver) {
+
+    public CatalogPage(WebDriver driver) {
         super(driver);
     }
 }

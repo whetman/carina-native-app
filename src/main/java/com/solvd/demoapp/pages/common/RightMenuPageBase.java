@@ -13,16 +13,16 @@ public abstract class RightMenuPageBase extends PageBase {
     @ExtendedFindBy(iosPredicate = "name == \"LogOut-menu-item\"")
     private ExtendedWebElement loginOption;
 
-        public RightMenuPageBase(WebDriver driver) {
+    public RightMenuPageBase(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         setUiLoadedMarker(this.loginOption);
     }
 
-    public LoginPageBase goToLoginPage(){
-            LOGGER.info("goToLoginPage()");
-            loginOption.click();
-            return initPage(getDriver(), LoginPageBase.class);
+    public LoginPageBase goToLoginPage() {
+        LOGGER.info("goToLoginPage()");
+        loginOption.click();
+        return initPage(getDriver(), LoginPageBase.class);
     }
 
     public ExtendedWebElement getLoginOption() {
