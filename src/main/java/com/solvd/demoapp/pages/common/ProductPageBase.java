@@ -7,6 +7,7 @@ import com.solvd.demoapp.constants.Colors;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+@Getter
 public abstract class ProductPageBase extends PageBaseWithOkButton {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductPageBase.class);
 
@@ -31,6 +33,7 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
     private Rating rating;
 
+    //todo make list of colors
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
     private Color color;
@@ -46,13 +49,13 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         setUiLoadedMarker(this.addToCartButton);
     }
 
-    public CartPageBase addDefaultToCartAndGoToCart() {
+    public CartPageBase addToCartAndGoToCart() {
         LOGGER.info("addDefaultToCartAndGoToCart()");
         clickAddToCartButton();
         return clickCartButton();
     }
 
-    public ProductPageBase addDefaultToCartAndGoBack() {
+    public ProductPageBase addToCartAndGoBack() {
         LOGGER.info("addDefaultToCartAndGoBack()");
         clickAddToCartButton();
         return clickGoBackButton();

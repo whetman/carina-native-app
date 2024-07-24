@@ -30,7 +30,7 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.addRandomProductToCart();
-        CartPageBase cartPage = productPage.addDefaultToCartAndGoToCart();
+        CartPageBase cartPage = productPage.addToCartAndGoToCart();
         boolean removed = cartPage.removeRandomItemFromCart();
         assertTrue(removed, "Item was not removed successfully");
     }
@@ -58,6 +58,10 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(isQuantityChangedPlus, "Quantity was not added successfully");
         boolean isQuantityChangedMinus = productPage.changeQuantityRemove();
         assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
+        String valueOnProductPage = productPage.getQuantity().getAmount().getAttribute("value");
+        CartPageBase cartPage = productPage.addToCartAndGoToCart();
+
+        //check quantity before adding to cart and if in cart is the same
     }
 
 }

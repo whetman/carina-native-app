@@ -7,9 +7,7 @@ import lombok.Getter;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
-/**
- * Each color has unique locator, so I can't make a List of them
- */
+//todo fix - make a list if possible
 @Getter
 public abstract class ColorBase extends AbstractUIObject {
 
