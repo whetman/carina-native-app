@@ -101,11 +101,4 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
         sorting.clickPriceDesc();
         return sorting.validatePriceDescending();
     }
-
-//    private boolean isSortingNotVisible(){
-//        LOGGER.info("isSortingNotVisible()");
-//        LOGGER.info("IS DISPLAYED: " + sorting.isDisplayed());
-//        LOGGER.info("IS VISIBLE: " + sorting.isVisible());
-//        return !sorting.isDisplayed();
-//    }
 }
