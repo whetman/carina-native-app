@@ -78,6 +78,7 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return okButton;
     }
 
+    //todo fix - it's too slow
     private Map<Colors, Boolean> colorsToChoose() {
         LOGGER.info("colorsToChoose()");
         Map<Colors, Boolean> availableColors = new HashMap<>();
