@@ -1,6 +1,6 @@
-# Solvd Automation Testing Project using Carina Framework for Jewelery for Pandora Application
+# Solvd Automation Testing Project using Carina Framework for "My Demo App" by Saucelabs
 
-This project is a testing exercise. It is using the application "Jewelery for Pandora".
+This project is a testing exercise. It is using the application "My Demo App" by Saucelabs.
 It uses Maven for dependency management.
 
 ## Prerequisites
@@ -35,6 +35,6 @@ This project uses the following dependencies (this section can change!):
 
 ## To-do
 
-- [ ] Create Pages for Jewelery for Pandora application
-- [ ] Create Components for Jewelery for Pandora application
-- [ ] Find out how to create reliable selectors for native application
+- [ ] Make lists where it's possible
+- [ ] Fix ugly locators
+- [ ] Fix sorting validation
