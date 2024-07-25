@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Getter
-public abstract class RightMenuPageBase extends PageBase {
+public abstract class RightMenuPageBase extends PageBaseWithOkButton {
     private static final Logger LOGGER = LoggerFactory.getLogger(RightMenuPageBase.class);
 
     @ExtendedFindBy(iosPredicate = "name == \"LogOut-menu-item\"")
@@ -23,6 +23,13 @@ public abstract class RightMenuPageBase extends PageBase {
 
     @ExtendedFindBy(accessibilityId = "GeoLocation-menu-item")
     private ExtendedWebElement geoLocationButton;
+
+    @ExtendedFindBy(accessibilityId = "ResetAppState-menu-item")
+    private ExtendedWebElement resetButton;
+
+//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeAlert[`name == \"Reset App State\"`]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[3]")
+    @ExtendedFindBy(accessibilityId = "RESET APP")
+    private ExtendedWebElement resetButtonInWindow;
 
     public RightMenuPageBase(WebDriver driver) {
         super(driver);
@@ -52,5 +59,13 @@ public abstract class RightMenuPageBase extends PageBase {
         LOGGER.info("clickGeoLocationButton()");
         geoLocationButton.click();
         return initPage(getDriver(), GeoLocationPageBase.class);
+    }
+
+    public RightMenuPageBase resetApplication(){
+        LOGGER.info("resetApplication()");
+        resetButton.click();
+        resetButtonInWindow.click();
+        okButton.click();
+        return initPage(getDriver(), RightMenuPageBase.class);
     }
 }

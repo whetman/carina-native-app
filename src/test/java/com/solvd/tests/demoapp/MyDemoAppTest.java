@@ -136,4 +136,13 @@ public class MyDemoAppTest extends AbstractTest {
                 "Geolocation is not valid");
     }
 
+    @Test(testName = "#TC0009", description = "Validate that app reset button is working properly")
+    public void validateResetting(){
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
+        RightMenuPageBase rightMenuPageAfterReset = rightMenuPage.resetApplication();
+        boolean pageOpened = rightMenuPageAfterReset.isPageOpened();
+        assertTrue(pageOpened, "Reset done successfully");
+    }
+
 }
