@@ -3,6 +3,7 @@ package com.solvd.demoapp.pages.common;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public abstract class CartPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(CartPageBase.class);
 
@@ -24,6 +26,12 @@ public abstract class CartPageBase extends PageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"Remove Item\"`]")
     private List<ExtendedWebElement> removeItemButtons;
+
+    @ExtendedFindBy(accessibilityId = "AddPlus Icons")
+    private ExtendedWebElement plusButton;
+
+    @ExtendedFindBy(accessibilityId = "SubtractMinus Icons")
+    private ExtendedWebElement minusButton;
 
     public CartPageBase(WebDriver driver) {
         super(driver);
@@ -44,5 +52,24 @@ public abstract class CartPageBase extends PageBase {
         } else {
             return noItemsMessage.isDisplayed();
         }
+    }
+
+    public boolean removeItemsWithMinusButton(String value) {
+        LOGGER.info("removeItemsWithMinusButton(" + value + ")");
+        if (value.isEmpty()) {
+            throw new IllegalArgumentException("Invalid value");
+        }
+        int amount = Integer.parseInt(value);
+        int count = 0;
+        while (minusButton.isVisible()) {
+            minusButton.click();
+            count++;
+        }
+        return count == amount;
+    }
+
+    public boolean isGoShoppingButtonVisible() {
+        LOGGER.info("isGoShoppingButtonVisible()");
+        return goShoppingButton.isVisible();
     }
 }

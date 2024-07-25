@@ -33,7 +33,7 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
     private Rating rating;
 
-    //todo make list of colors
+    //todo make list of colors if possible
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
     private Color color;

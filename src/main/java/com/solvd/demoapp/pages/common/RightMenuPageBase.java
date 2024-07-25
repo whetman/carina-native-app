@@ -3,10 +3,12 @@ package com.solvd.demoapp.pages.common;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Getter
 public abstract class RightMenuPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(RightMenuPageBase.class);
 
@@ -23,9 +25,5 @@ public abstract class RightMenuPageBase extends PageBase {
         LOGGER.info("goToLoginPage()");
         loginOption.click();
         return initPage(getDriver(), LoginPageBase.class);
-    }
-
-    public ExtendedWebElement getLoginOption() {
-        return loginOption;
     }
 }
