@@ -3,6 +3,7 @@ package com.solvd.tests.demoapp;
 import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
+import com.solvd.demoapp.pages.common.DrawingPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.RightMenuPageBase;
@@ -10,6 +11,8 @@ import com.solvd.tests.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 import static org.testng.Assert.assertTrue;
 
@@ -78,7 +81,7 @@ public class MyDemoAppTest extends AbstractTest {
 
     //todo change validation in sorting
     @Test(testName = "#TC0005", description = "Validate that not logged user can change sorting on the catalog page")
-    public void validateSorting(){
+    public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
         boolean descendingNames = catalogPage.changeSortingNameDesc();
@@ -92,6 +95,15 @@ public class MyDemoAppTest extends AbstractTest {
 
         boolean descendingPrices = catalogPage.changeSortingPriceDesc();
         assertTrue(descendingPrices, "Products are not sorted by prices - descending");
+    }
+
+    @Test(testName = "#TC0006", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
+    public void validateDrawing() throws IOException {
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
+        DrawingPageBase drawingPage = rightMenuPage.clickDrawingButton();
+        boolean draw = drawingPage.draw(194, 523, 91, 274);
+        assertTrue(draw, "Drawing was not completed successfully");
     }
 
 }

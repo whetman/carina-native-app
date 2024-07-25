@@ -15,6 +15,9 @@ public abstract class RightMenuPageBase extends PageBase {
     @ExtendedFindBy(iosPredicate = "name == \"LogOut-menu-item\"")
     private ExtendedWebElement loginOption;
 
+    @ExtendedFindBy(accessibilityId = "Drawing-menu-item")
+    private ExtendedWebElement drawingButton;
+
     public RightMenuPageBase(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -25,5 +28,11 @@ public abstract class RightMenuPageBase extends PageBase {
         LOGGER.info("goToLoginPage()");
         loginOption.click();
         return initPage(getDriver(), LoginPageBase.class);
+    }
+
+    public DrawingPageBase clickDrawingButton(){
+        LOGGER.info("clickDrawingButton()");
+        drawingButton.click();
+        return initPage(getDriver(), DrawingPageBase.class);
     }
 }
