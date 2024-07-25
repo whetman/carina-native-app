@@ -17,8 +17,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
-
 public abstract class DrawingPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(DrawingPageBase.class);
 
@@ -42,8 +40,6 @@ public abstract class DrawingPageBase extends PageBase {
 
         String directory = "screenshots/";
         Files.createDirectories(Paths.get(directory));
-
-        waitUntil(visibilityOf(saveButton), 10L);
 
         File screenshotBefore = new File(directory + "screenshotBefore.png");
         BufferedImage imageBefore = takeScreenshot(getDriver(), screenshotBefore);
