@@ -76,6 +76,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
     }
 
+    //todo change validation in sorting
     @Test(testName = "#TC0005", description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
