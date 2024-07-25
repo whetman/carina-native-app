@@ -1,6 +1,7 @@
 package com.solvd.demoapp.pages.common;
 
 import com.solvd.demoapp.components.product.Product;
+import com.solvd.demoapp.components.sorting.Sorting;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -19,6 +20,23 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
 
     @ExtendedFindBy(iosPredicate = "name == \"ProductItem\"")
     private List<Product> products;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Button\"`]")
+    private ExtendedWebElement sortButton;
+
+//    //very ugly locator :) - todo fix if possible
+//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther\n" +
+//            "     /XCUIElementTypeOther[1]\n" +
+//            "     /XCUIElementTypeOther[2]\n" +
+//            "     /XCUIElementTypeOther")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
+    private Sorting sorting;
 
     public CatalogPageBase(WebDriver driver) {
         super(driver);
@@ -55,4 +73,39 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
         product.rateProduct();
         return okButton;
     }
+
+    public boolean changeSortingNameAsc() {
+        LOGGER.info("changeSortingNameAsc()");
+        sortButton.click();
+        sorting.clickNameAsc();
+        return sorting.validateNameAscending();
+    }
+
+    public boolean changeSortingNameDesc() {
+        LOGGER.info("changeSortingNameDesc()");
+        sortButton.click();
+        sorting.clickNameDesc();
+        return sorting.validateNameDescending();
+    }
+
+    public boolean changeSortingPriceAsc() {
+        LOGGER.info("changeSortingPriceAsc()");
+        sortButton.click();
+        sorting.clickPriceAsc();
+        return sorting.validatePriceAscending();
+    }
+
+    public boolean changeSortingPriceDesc() {
+        LOGGER.info("changeSortingPriceDesc()");
+        sortButton.click();
+        sorting.clickPriceDesc();
+        return sorting.validatePriceDescending();
+    }
+
+//    private boolean isSortingNotVisible(){
+//        LOGGER.info("isSortingNotVisible()");
+//        LOGGER.info("IS DISPLAYED: " + sorting.isDisplayed());
+//        LOGGER.info("IS VISIBLE: " + sorting.isVisible());
+//        return !sorting.isDisplayed();
+//    }
 }

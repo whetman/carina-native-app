@@ -76,4 +76,21 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
     }
 
+    @Test(testName = "#TC0005", description = "Validate that not logged user can change sorting on the catalog page")
+    public void validateSorting(){
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+
+        boolean descendingNames = catalogPage.changeSortingNameDesc();
+        assertTrue(descendingNames, "Products are not sorted by names - descending");
+
+        boolean ascendingNames = catalogPage.changeSortingNameAsc();
+        assertTrue(ascendingNames, "Products are not sorted by names - ascending");
+
+        boolean ascendingPrices = catalogPage.changeSortingPriceAsc();
+        assertTrue(ascendingPrices, "Products are not sorted by prices - ascending");
+
+        boolean descendingPrices = catalogPage.changeSortingPriceDesc();
+        assertTrue(descendingPrices, "Products are not sorted by prices - descending");
+    }
+
 }
