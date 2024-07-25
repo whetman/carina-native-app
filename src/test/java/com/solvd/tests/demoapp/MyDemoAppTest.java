@@ -5,6 +5,7 @@ import com.solvd.demoapp.pages.common.AboutPageBase;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.DrawingPageBase;
+import com.solvd.demoapp.pages.common.GeoLocationPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.RightMenuPageBase;
@@ -113,13 +114,26 @@ public class MyDemoAppTest extends AbstractTest {
     }
 
     @Test(testName = "#TC0007", description = "Validate that not logged user can successfully redirect from the app to the company page")
-    public void validateAboutPage(){
+    public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
         AboutPageBase aboutPage = rightMenuPage.clickAboutButton();
         SauceLabsBase sauceLabs = aboutPage.goToSauceLabsPage();
         boolean pageOpened = sauceLabs.isPageOpened();
         assertTrue(pageOpened, "Redirection was not performed successfully!");
+    }
+
+    @Test(testName = "#TC0008", description = "Validate that geolocation is showing correct longitude and latitude")
+    public void validateGeoLocation() {
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
+        GeoLocationPageBase geoLocationPage = rightMenuPage.clickGeoLocationButton();
+        String latitude = geoLocationPage.getLatitude();
+        String longitude = geoLocationPage.getLongitude();
+
+        assertTrue(latitude.equals(R.TESTDATA.get("location-latitude"))
+                        && longitude.equals(R.TESTDATA.get("location-longitude")),
+                "Geolocation is not valid");
     }
 
 }
