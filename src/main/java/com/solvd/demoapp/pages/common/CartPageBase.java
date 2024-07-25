@@ -33,6 +33,9 @@ public abstract class CartPageBase extends PageBase {
     @ExtendedFindBy(accessibilityId = "SubtractMinus Icons")
     private ExtendedWebElement minusButton;
 
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeCell/XCUIElementTypeStaticText[5]")
+    private ExtendedWebElement value;
+
     public CartPageBase(WebDriver driver) {
         super(driver);
         LOGGER.info("CartPageBase()");
@@ -71,5 +74,10 @@ public abstract class CartPageBase extends PageBase {
     public boolean isGoShoppingButtonVisible() {
         LOGGER.info("isGoShoppingButtonVisible()");
         return goShoppingButton.isVisible();
+    }
+
+    public String getValue(){
+        String text = value.getText();
+        return text;
     }
 }

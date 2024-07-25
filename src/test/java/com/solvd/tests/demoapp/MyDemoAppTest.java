@@ -72,6 +72,10 @@ public class MyDemoAppTest extends AbstractTest {
         String valueOnProductPage = productPage.getQuantity().getAmount().getAttribute("value");
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
+        String valueInTheCart = cartPage.getValue();
+        boolean isQuantityTheSame = valueInTheCart.equals(valueOnProductPage);
+        assertTrue(isQuantityTheSame, "Quantity is not the same");
+
         boolean isRemoved = cartPage.removeItemsWithMinusButton(valueOnProductPage);
         assertTrue(isRemoved, "Items were not removed successfully");
 
