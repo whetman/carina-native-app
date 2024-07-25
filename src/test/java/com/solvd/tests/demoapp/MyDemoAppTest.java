@@ -1,12 +1,14 @@
 package com.solvd.tests.demoapp;
 
 import com.solvd.demoapp.constants.Colors;
+import com.solvd.demoapp.pages.common.AboutPageBase;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.DrawingPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.RightMenuPageBase;
+import com.solvd.demoapp.pages.common.SauceLabsBase;
 import com.solvd.tests.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -108,6 +110,16 @@ public class MyDemoAppTest extends AbstractTest {
         DrawingPageBase drawingPage = rightMenuPage.clickDrawingButton();
         boolean draw = drawingPage.draw(194, 523, 91, 274);
         assertTrue(draw, "Drawing was not completed successfully");
+    }
+
+    @Test(testName = "#TC0007", description = "Validate that not logged user can successfully redirect from the app to the company page")
+    public void validateAboutPage(){
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
+        AboutPageBase aboutPage = rightMenuPage.clickAboutButton();
+        SauceLabsBase sauceLabs = aboutPage.goToSauceLabsPage();
+        boolean pageOpened = sauceLabs.isPageOpened();
+        assertTrue(pageOpened, "Redirection was not performed successfully!");
     }
 
 }

@@ -18,6 +18,9 @@ public abstract class RightMenuPageBase extends PageBase {
     @ExtendedFindBy(accessibilityId = "Drawing-menu-item")
     private ExtendedWebElement drawingButton;
 
+    @ExtendedFindBy(accessibilityId = "About-menu-item")
+    private ExtendedWebElement aboutButton;
+
     public RightMenuPageBase(WebDriver driver) {
         super(driver);
         setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
@@ -34,5 +37,11 @@ public abstract class RightMenuPageBase extends PageBase {
         LOGGER.info("clickDrawingButton()");
         drawingButton.click();
         return initPage(getDriver(), DrawingPageBase.class);
+    }
+
+    public AboutPageBase clickAboutButton(){
+        LOGGER.info("clickAboutButton()");
+        aboutButton.click();
+        return initPage(getDriver(), AboutPageBase.class);
     }
 }
