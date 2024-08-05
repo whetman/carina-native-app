@@ -4,6 +4,7 @@ import com.solvd.demoapp.components.product.Product;
 import com.solvd.demoapp.components.sorting.Sorting;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Random;
 
+@Getter
 public abstract class CatalogPageBase extends PageBaseWithOkButton {
     private static final Logger LOGGER = LoggerFactory.getLogger(CatalogPageBase.class);
 
@@ -23,7 +25,7 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Button\"`]")
     private ExtendedWebElement sortButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[$type == 'XCUIElementTypeButton' AND name == 'Name - Ascending'$][-1]")
     private Sorting sorting;
 
     public CatalogPageBase(WebDriver driver) {
@@ -61,31 +63,27 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
         return okButton;
     }
 
-    public boolean changeSortingNameAsc() {
+    public void changeSortingNameAsc() {
         LOGGER.info("changeSortingNameAsc()");
         sortButton.click();
         sorting.clickNameAsc();
-        return sorting.validateNameAscending();
     }
 
-    public boolean changeSortingNameDesc() {
+    public void changeSortingNameDesc() {
         LOGGER.info("changeSortingNameDesc()");
         sortButton.click();
         sorting.clickNameDesc();
-        return sorting.validateNameDescending();
     }
 
-    public boolean changeSortingPriceAsc() {
+    public void changeSortingPriceAsc() {
         LOGGER.info("changeSortingPriceAsc()");
         sortButton.click();
         sorting.clickPriceAsc();
-        return sorting.validatePriceAscending();
     }
 
-    public boolean changeSortingPriceDesc() {
+    public void changeSortingPriceDesc() {
         LOGGER.info("changeSortingPriceDesc()");
         sortButton.click();
         sorting.clickPriceDesc();
-        return sorting.validatePriceDescending();
     }
 }

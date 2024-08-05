@@ -79,14 +79,10 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
     private Map<Colors, Boolean> colorsToChoose() {
         LOGGER.info("colorsToChoose()");
         Map<Colors, Boolean> availableColors = new HashMap<>();
-        Boolean isBlackAvailable = color.getColorBlack().isVisible(0);
-        availableColors.putIfAbsent(Colors.BLACK, isBlackAvailable);
-        Boolean isGreenAvailable = color.getColorGreen().isVisible(0);
-        availableColors.putIfAbsent(Colors.GREEN, isGreenAvailable);
-        Boolean isBlueAvailable = color.getColorBlue().isVisible(0);
-        availableColors.putIfAbsent(Colors.BLUE, isBlueAvailable);
-        Boolean isGrayAvailable = color.getColorGray().isVisible(0);
-        availableColors.putIfAbsent(Colors.GRAY, isGrayAvailable);
+        availableColors.put(Colors.BLACK, color.getColorBlack().isVisible(0));
+        availableColors.put(Colors.GREEN, color.getColorGreen().isVisible(0));
+        availableColors.put(Colors.BLUE, color.getColorBlue().isVisible(0));
+        availableColors.put(Colors.GRAY, color.getColorGray().isVisible(0));
         return availableColors;
     }
 
