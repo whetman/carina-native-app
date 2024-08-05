@@ -11,8 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Random;
 
 @Getter
@@ -32,10 +31,9 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
     private Rating rating;
 
-    //todo make list of colors if possible
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
-            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]")
-    private Color color;
+            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton")
+    private List<Color> color;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
@@ -76,34 +74,17 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return okButton;
     }
 
-    private Map<Colors, Boolean> colorsToChoose() {
-        LOGGER.info("colorsToChoose()");
-        Map<Colors, Boolean> availableColors = new HashMap<>();
-        availableColors.put(Colors.BLACK, color.getColorBlack().isVisible(0));
-        availableColors.put(Colors.GREEN, color.getColorGreen().isVisible(0));
-        availableColors.put(Colors.BLUE, color.getColorBlue().isVisible(0));
-        availableColors.put(Colors.GRAY, color.getColorGray().isVisible(0));
-        return availableColors;
-    }
-
     public boolean selectColor(Colors chosenColor) {
-        LOGGER.info("selectColor()");
-        boolean isColorChosen = false;
-        Map<Colors, Boolean> colorsBooleanMap = colorsToChoose();
-
-        if (colorsBooleanMap.get(chosenColor)) {
-            switch (chosenColor) {
-                case Colors.BLUE -> color.getColorBlue().click();
-                case Colors.GRAY -> color.getColorGray().click();
-                case Colors.GREEN -> color.getColorGreen().click();
-                default -> color.getColorBlack().click();
-            }
-            isColorChosen = true;
+        LOGGER.info("selectColor(" + chosenColor + ")");
+        List<Color> name = color.stream().filter(e -> chosenColor.name().contains(e.getAttribute("name"))).toList();
+        if (!name.isEmpty()) {
+            name.getFirst().click();
+            return true;
         } else {
-            color.getColorBlack().click();
-            isColorChosen = true;
+            LOGGER.info("Chosen color: " + chosenColor.name() + " is not available. Choosing default color instead.");
+            color.getFirst().click();
+            return true;
         }
-        return isColorChosen;
     }
 
     public boolean changeQuantityAdd() {
