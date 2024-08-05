@@ -17,7 +17,7 @@ public abstract class LoginPageBase extends PageBase {
 
     @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeSecureTextField\"")
     private ExtendedWebElement passwordField;
-
+//todo fix
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"bob@example.com\"`]")
     private ExtendedWebElement bobLoginButton;
 
