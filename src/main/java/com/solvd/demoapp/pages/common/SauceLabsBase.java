@@ -2,7 +2,6 @@ package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.utils.ios.IOSUtils;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +13,6 @@ public abstract class SauceLabsBase extends AbstractPage implements IOSUtils {
 
     public SauceLabsBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.logo);
+        setUiLoadedMarker(logo);
     }
 }

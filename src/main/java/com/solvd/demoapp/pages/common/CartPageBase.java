@@ -1,7 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -39,8 +38,7 @@ public abstract class CartPageBase extends PageBase {
     public CartPageBase(WebDriver driver) {
         super(driver);
         LOGGER.info("CartPageBase()");
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.cartScreen);
+        setUiLoadedMarker(cartScreen);
     }
 
     public boolean removeRandomItemFromCart() {

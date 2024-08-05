@@ -1,7 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -21,8 +20,7 @@ public abstract class LoginPageBase extends PageBase {
 
     public LoginPageBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.loginButton);
+        setUiLoadedMarker(loginButton);
     }
 
     public void logIn(String username, String password) {

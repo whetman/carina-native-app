@@ -21,6 +21,7 @@ import static org.testng.Assert.assertTrue;
 
 public class MyDemoAppTest extends AbstractTest {
 
+    //todo fix it - click on user
     @Test(testName = "#TC0001", description = "Validate that user can log in")
     public void validateLogging() {
         //preconditions - user is logged - logging doesn't work on this app because of the broken keyboard feature!
@@ -42,14 +43,17 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(removed, "Item was not removed successfully");
     }
 
-    @Test(testName = "#TC0003", description = "Validate that not logged user can rate product both on the catalog and on the product page")
-    public void validateRating() {
+    @Test(testName = "#TC0003", description = "Validate that not logged user can rate product on the catalog")
+    public void validateRatingCatalogPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ExtendedWebElement okButtonCatalog = catalogPage.rateRandomProduct();
 
         assertTrue(okButtonCatalog.isDisplayed(), "OK button on catalog page is not displayed");
+    }
 
-        okButtonCatalog.click();
+    @Test(testName = "#TC0004", description = "Validate that not logged user can rate product on the product page")
+    public void validateRatingProductPage() {
+        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
         ExtendedWebElement okButtonProduct = productPage.rateProduct();
 
@@ -58,7 +62,7 @@ public class MyDemoAppTest extends AbstractTest {
         okButtonProduct.click();
     }
 
-    @Test(testName = "#TC0004", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete them from the cart")
+    @Test(testName = "#TC0005", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete them from the cart")
     public void validateChangingProductProperties() throws NoSuchFieldException, IllegalAccessException {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
@@ -87,7 +91,7 @@ public class MyDemoAppTest extends AbstractTest {
     }
 
     //todo change validation in sorting
-    @Test(testName = "#TC0005", description = "Validate that not logged user can change sorting on the catalog page")
+    @Test(testName = "#TC0006", description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
@@ -104,7 +108,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(descendingPrices, "Products are not sorted by prices - descending");
     }
 
-    @Test(testName = "#TC0006", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
+    @Test(testName = "#TC0007", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
     public void validateDrawing() throws IOException {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
@@ -113,7 +117,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(draw, "Drawing was not completed successfully");
     }
 
-    @Test(testName = "#TC0007", description = "Validate that not logged user can successfully redirect from the app to the company page")
+    @Test(testName = "#TC0008", description = "Validate that not logged user can successfully redirect from the app to the company page")
     public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
@@ -123,7 +127,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(pageOpened, "Redirection was not performed successfully!");
     }
 
-    @Test(testName = "#TC0008", description = "Validate that geolocation is showing correct longitude and latitude")
+    @Test(testName = "#TC0009", description = "Validate that geolocation is showing correct longitude and latitude")
     public void validateGeoLocation() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
@@ -136,7 +140,7 @@ public class MyDemoAppTest extends AbstractTest {
                 "Geolocation is not valid");
     }
 
-    @Test(testName = "#TC0009", description = "Validate that app reset button is working properly")
+    @Test(testName = "#TC0010", description = "Validate that app reset button is working properly")
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
@@ -144,5 +148,4 @@ public class MyDemoAppTest extends AbstractTest {
         boolean pageOpened = rightMenuPageAfterReset.isPageOpened();
         assertTrue(pageOpened, "Reset done successfully");
     }
-
 }

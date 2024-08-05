@@ -1,7 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.OutputType;
@@ -31,8 +30,7 @@ public abstract class DrawingPageBase extends PageBase {
 
     public DrawingPageBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.drawingBackground);
+        setUiLoadedMarker(drawingBackground);
     }
 
     public boolean draw(int x, int y, int xa, int ya) throws IOException {

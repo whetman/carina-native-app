@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class GeoLocationPageBase extends PageBase {
+public abstract class GeoLocationPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(GeoLocationPageBase.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[7]")

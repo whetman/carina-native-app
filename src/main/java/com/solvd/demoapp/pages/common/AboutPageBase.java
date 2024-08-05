@@ -1,7 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -18,8 +17,7 @@ public abstract class AboutPageBase extends PageBase{
 
     public AboutPageBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.pageTitle);
+        setUiLoadedMarker(pageTitle);
     }
 
     public SauceLabsBase goToSauceLabsPage(){

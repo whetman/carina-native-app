@@ -1,7 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -27,14 +26,12 @@ public abstract class RightMenuPageBase extends PageBaseWithOkButton {
     @ExtendedFindBy(accessibilityId = "ResetAppState-menu-item")
     private ExtendedWebElement resetButton;
 
-//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeAlert[`name == \"Reset App State\"`]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeScrollView[2]/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[3]")
     @ExtendedFindBy(accessibilityId = "RESET APP")
     private ExtendedWebElement resetButtonInWindow;
 
     public RightMenuPageBase(WebDriver driver) {
         super(driver);
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.loginOption);
+        setUiLoadedMarker(loginOption);
     }
 
     public LoginPageBase goToLoginPage() {

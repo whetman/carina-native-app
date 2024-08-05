@@ -5,7 +5,6 @@ import com.solvd.demoapp.components.quantity.Quantity;
 import com.solvd.demoapp.components.rating.Rating;
 import com.solvd.demoapp.constants.Colors;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
@@ -45,8 +44,7 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
     public ProductPageBase(WebDriver driver) {
         super(driver);
         LOGGER.info("ProductPageBase()");
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.addToCartButton);
+        setUiLoadedMarker(addToCartButton);
     }
 
     public CartPageBase addToCartAndGoToCart() {
@@ -78,7 +76,6 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
         return okButton;
     }
 
-    //todo fix - it's too slow
     private Map<Colors, Boolean> colorsToChoose() {
         LOGGER.info("colorsToChoose()");
         Map<Colors, Boolean> availableColors = new HashMap<>();

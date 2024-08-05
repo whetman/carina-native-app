@@ -3,7 +3,6 @@ package com.solvd.demoapp.pages.common;
 import com.solvd.demoapp.components.product.Product;
 import com.solvd.demoapp.components.sorting.Sorting;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.decorator.PageOpeningStrategy;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -24,25 +23,13 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Button\"`]")
     private ExtendedWebElement sortButton;
 
-//    //very ugly locator :) - todo fix if possible
-//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther\n" +
-//            "     /XCUIElementTypeOther[1]\n" +
-//            "     /XCUIElementTypeOther[2]\n" +
-//            "     /XCUIElementTypeOther")
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeWindow/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
     private Sorting sorting;
 
     public CatalogPageBase(WebDriver driver) {
         super(driver);
         LOGGER.info("CatalogPageBase()");
-        setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
-        setUiLoadedMarker(this.catalogScreen);
+        setUiLoadedMarker(catalogScreen);
     }
 
     private ProductPageBase clickProduct(int index) {
