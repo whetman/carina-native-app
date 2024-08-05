@@ -75,16 +75,15 @@ public abstract class ProductPageBase extends PageBaseWithOkButton {
     }
 
     public boolean selectColor(Colors chosenColor) {
-        LOGGER.info("selectColor(" + chosenColor + ")");
-        List<Color> name = color.stream().filter(e -> chosenColor.name().contains(e.getAttribute("name"))).toList();
-        if (!name.isEmpty()) {
-            name.getFirst().click();
-            return true;
-        } else {
-            LOGGER.info("Chosen color: " + chosenColor.name() + " is not available. Choosing default color instead.");
-            color.getFirst().click();
+        LOGGER.info("selectColor(" + chosenColor.getColor() + ")");
+        if (color.size() == 1) {
+            LOGGER.info("The product has only one default color. Nothing to change.");
             return true;
         }
+        return color.stream().filter(e -> chosenColor.getColor().equals(e.getAttribute("name"))).findFirst().map(e -> {
+            e.click();
+            return true;
+        }).orElse(false);
     }
 
     public boolean changeQuantityAdd() {

@@ -15,6 +15,7 @@ import com.solvd.tests.AbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
@@ -66,27 +67,29 @@ public class MyDemoAppTest extends AbstractTest {
 
     @Test(testName = "#TC0005", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete them from the cart")
     public void validateChangingProductProperties() throws NoSuchFieldException, IllegalAccessException {
+        SoftAssert softAssert = new SoftAssert();
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
 
-        boolean isColorChanged = productPage.selectColor(Colors.BLUE);
-        assertTrue(isColorChanged, "Color was not changed successfully");
+        boolean isColorChanged = productPage.selectColor(Colors.GRAY);
+        softAssert.assertTrue(isColorChanged, "Color was not changed successfully. Something went wrong or chosen color not available");
 
         boolean isQuantityChangedPlus = productPage.changeQuantityAdd();
-        assertTrue(isQuantityChangedPlus, "Quantity was not added successfully");
+        softAssert.assertTrue(isQuantityChangedPlus, "Quantity was not added successfully");
 
         boolean isQuantityChangedMinus = productPage.changeQuantityRemove();
-        assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
+        softAssert.assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
 
         String valueOnProductPage = productPage.getQuantity().getAmount().getAttribute("value");
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
         String valueInTheCart = cartPage.getValue();
         boolean isQuantityTheSame = valueInTheCart.equals(valueOnProductPage);
-        assertTrue(isQuantityTheSame, "Quantity is not the same");
+        softAssert.assertTrue(isQuantityTheSame, "Quantity is not the same");
 
         boolean isRemoved = cartPage.removeItemsWithMinusButton(valueOnProductPage);
-        assertTrue(isRemoved, "Items were not removed successfully");
+        softAssert.assertTrue(isRemoved, "Items were not removed successfully");
+        softAssert.assertAll();
 
         boolean isGoShoppingVisible = cartPage.isGoShoppingButtonVisible();
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
