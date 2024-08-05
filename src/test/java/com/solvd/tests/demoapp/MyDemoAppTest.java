@@ -21,16 +21,17 @@ import static org.testng.Assert.assertTrue;
 
 public class MyDemoAppTest extends AbstractTest {
 
-    //todo fix it - click on user
     @Test(testName = "#TC0001", description = "Validate that user can log in")
     public void validateLogging() {
-        //preconditions - user is logged - logging doesn't work on this app because of the broken keyboard feature!
-        //it also doesn't work while buying!
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPageBase = catalogPage.clickMoreButton();
-        LoginPageBase loginPage = rightMenuPageBase.goToLoginPage();
-        loginPage.isPageOpened();
-        loginPage.logIn(R.TESTDATA.get("username-demo"), R.TESTDATA.get("password-demo"));
+        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
+        LoginPageBase loginPage = rightMenuPage.goToLoginPage();
+        CatalogPageBase catalogPageLogged = loginPage.loginBob();
+        boolean pageOpened = catalogPageLogged.isPageOpened();
+        assertTrue(pageOpened, "Successfully redirected after logging in");
+        RightMenuPageBase rightMenuPageLogged = catalogPageLogged.clickMoreButton();
+        boolean visible = rightMenuPageLogged.getLogoutButton().isVisible(0);
+        assertTrue(visible, "Logout button is not displayed - user not logged!");
     }
 
     @Test(testName = "#TC0002", description = "Validate that not logged user can add product to the cart and delete it")

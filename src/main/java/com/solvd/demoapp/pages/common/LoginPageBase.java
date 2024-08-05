@@ -18,9 +18,19 @@ public abstract class LoginPageBase extends PageBase {
     @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeSecureTextField\"")
     private ExtendedWebElement passwordField;
 
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"bob@example.com\"`]")
+    private ExtendedWebElement bobLoginButton;
+
     public LoginPageBase(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginButton);
+    }
+
+    public CatalogPageBase loginBob(){
+        LOGGER.info("loginBob()");
+        bobLoginButton.click();
+        loginButton.click();
+        return initPage(getDriver(), CatalogPageBase.class);
     }
 
     public void logIn(String username, String password) {

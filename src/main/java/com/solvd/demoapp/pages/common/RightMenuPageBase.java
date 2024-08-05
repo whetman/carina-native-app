@@ -29,6 +29,9 @@ public abstract class RightMenuPageBase extends PageBaseWithOkButton {
     @ExtendedFindBy(accessibilityId = "RESET APP")
     private ExtendedWebElement resetButtonInWindow;
 
+    @ExtendedFindBy(accessibilityId = "LogOut-menu-item")
+    private ExtendedWebElement logoutButton;
+
     public RightMenuPageBase(WebDriver driver) {
         super(driver);
         setUiLoadedMarker(loginOption);
