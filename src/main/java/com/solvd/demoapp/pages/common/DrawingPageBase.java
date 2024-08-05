@@ -1,8 +1,8 @@
 package com.solvd.demoapp.pages.common;
 
+import com.solvd.demoapp.exception.ImageException;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import org.openqa.selenium.InvalidArgumentException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -33,7 +33,7 @@ public abstract class DrawingPageBase extends PageBase {
         setUiLoadedMarker(drawingBackground);
     }
 
-    public boolean draw(int x, int y, int xa, int ya) throws IOException {
+    public boolean draw(int x, int y, int xa, int ya) throws IOException, ImageException {
         LOGGER.info("draw()");
 
         String directory = "screenshots/";
@@ -55,10 +55,10 @@ public abstract class DrawingPageBase extends PageBase {
         return ImageIO.read(destination);
     }
 
-    private boolean isImageDifferent(BufferedImage before, BufferedImage after) {
+    private boolean isImageDifferent(BufferedImage before, BufferedImage after) throws ImageException {
         LOGGER.info("isImageDifferent()");
         if (before.getWidth() != after.getWidth() || before.getHeight() != after.getHeight()) {
-            throw new InvalidArgumentException("Comparing wrong images!"); //todo replace with custom exception
+            throw new ImageException("Comparing wrong images!");
         }
         for (int y = 0; y < before.getHeight(); y++) {
             for (int x = 0; x < before.getWidth(); x++) {

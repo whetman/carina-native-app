@@ -1,6 +1,7 @@
 package com.solvd.tests.demoapp;
 
 import com.solvd.demoapp.constants.Colors;
+import com.solvd.demoapp.exception.ImageException;
 import com.solvd.demoapp.pages.common.AboutPageBase;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
@@ -112,7 +113,7 @@ public class MyDemoAppTest extends AbstractTest {
     }
 
     @Test(testName = "#TC0007", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
-    public void validateDrawing() throws IOException {
+    public void validateDrawing() throws IOException, ImageException {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
         DrawingPageBase drawingPage = rightMenuPage.clickDrawingButton();
