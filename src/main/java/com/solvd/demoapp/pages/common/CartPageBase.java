@@ -1,5 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
+import com.solvd.demoapp.utils.RandomIndex;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
@@ -8,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Random;
 
 @Getter
 public abstract class CartPageBase extends PageBase {
@@ -42,9 +42,8 @@ public abstract class CartPageBase extends PageBase {
     }
 
     public boolean removeRandomItemFromCart() {
-        Random rand = new Random();
         int size = removeItemButtons.size();
-        int index = rand.nextInt(size);
+        int index = RandomIndex.randomize(size);
         LOGGER.info("removeItemFromCart(" + index + ")");
         removeItemButtons.get(index).click();
         if (!removeItemButtons.isEmpty()) {

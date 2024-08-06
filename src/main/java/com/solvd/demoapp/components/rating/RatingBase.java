@@ -1,5 +1,6 @@
 package com.solvd.demoapp.components.rating;
 
+import com.solvd.demoapp.utils.RandomIndex;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -9,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Random;
 
 public abstract class RatingBase extends AbstractUIObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(RatingBase.class);
@@ -27,8 +27,7 @@ public abstract class RatingBase extends AbstractUIObject {
     public void clickRandomSelectedStar() {
         LOGGER.info("clickSelectedStar()");
         if (!selectedStars.isEmpty()) {
-            Random rand = new Random();
-            int index = rand.nextInt(selectedStars.size());
+            int index = RandomIndex.randomize(selectedStars.size());
             LOGGER.info("Clicking " + index + " selected star");
             selectedStars.get(index).click();
         } else {
@@ -39,8 +38,7 @@ public abstract class RatingBase extends AbstractUIObject {
     public void clickUnselectedStar() {
         LOGGER.info("clickUnselectedStar()");
         if (!unselectedStars.isEmpty()) {
-            Random rand = new Random();
-            int index = rand.nextInt(unselectedStars.size());
+            int index = RandomIndex.randomize(unselectedStars.size());
             LOGGER.info("Clicking " + index + " unselected star");
             unselectedStars.get(index).click();
         } else {

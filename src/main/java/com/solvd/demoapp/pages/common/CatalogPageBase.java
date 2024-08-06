@@ -2,6 +2,7 @@ package com.solvd.demoapp.pages.common;
 
 import com.solvd.demoapp.components.product.Product;
 import com.solvd.demoapp.components.sorting.Sorting;
+import com.solvd.demoapp.utils.RandomIndex;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Random;
 
 @Getter
 public abstract class CatalogPageBase extends PageBaseWithOkButton {
@@ -41,22 +41,19 @@ public abstract class CatalogPageBase extends PageBaseWithOkButton {
 
     public ProductPageBase clickRandomProduct() {
         LOGGER.info("clickRandomProduct()");
-        Random rand = new Random();
-        int index = rand.nextInt(products.size());
+        int index = RandomIndex.randomize(products.size());
         LOGGER.info("clickRandomProduct(" + index + ")");
         return clickProduct(index);
     }
 
     public ProductPageBase addRandomProductToCart() {
-        Random rand = new Random();
-        int index = rand.nextInt(products.size());
+        int index = RandomIndex.randomize(products.size());
         LOGGER.info("addRandomProductToCart(" + index + ")");
         return clickProduct(index);
     }
 
     public ExtendedWebElement rateRandomProduct() {
-        Random rand = new Random();
-        int index = rand.nextInt(products.size());
+        int index = RandomIndex.randomize(products.size());
         LOGGER.info("rateRandomProduct(" + index + ")");
         Product product = products.get(index);
         product.rateProduct();

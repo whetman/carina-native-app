@@ -12,12 +12,6 @@ public abstract class LoginPageBase extends PageBase {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Login\"`]")
     private ExtendedWebElement loginButton;
 
-    @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeTextField\"")
-    private ExtendedWebElement userNameField;
-
-    @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeSecureTextField\"")
-    private ExtendedWebElement passwordField;
-
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"bob@example.com\"`]")
     private ExtendedWebElement bobLoginButton;
 
@@ -31,18 +25,6 @@ public abstract class LoginPageBase extends PageBase {
         bobLoginButton.click();
         loginButton.click();
         return initPage(getDriver(), CatalogPageBase.class);
-    }
-
-    public void logIn(String username, String password) {
-        userNameField.type(username);
-        passwordField.type(password);
-
-        LOGGER.info("KEYBOARD: " + isKeyboardShown());
-
-        hideKeyboard();
-        LOGGER.info("KEYBOARD: " + isKeyboardShown());
-
-        loginButton.click();
     }
 
 }
