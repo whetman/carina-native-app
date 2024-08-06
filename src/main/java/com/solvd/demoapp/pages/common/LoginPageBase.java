@@ -18,7 +18,7 @@ public abstract class LoginPageBase extends PageBase {
     @ExtendedFindBy(iosPredicate = "type == \"XCUIElementTypeSecureTextField\"")
     private ExtendedWebElement passwordField;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton/XCUIElementTypeStaticText[2]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name == \"bob@example.com\"`]")
     private ExtendedWebElement bobLoginButton;
 
     public LoginPageBase(WebDriver driver) {
