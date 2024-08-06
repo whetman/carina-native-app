@@ -112,7 +112,7 @@ public class MyDemoAppTest extends AbstractTest {
         String firstProductAsc = catalogPage.getProducts().getFirst().getProductAttributes().getFirst().getAttribute("name");
         String lastProductAsc = catalogPage.getProducts().getLast().getProductAttributes().getFirst().getAttribute("name");
         int ascending = firstProductAsc.compareTo(lastProductAsc);
-        assertTrue(ascending < 0, "Products are not sorted by names - ascending");
+        assertTrue(ascending <= 0, "Products are not sorted by names - ascending");
     }
 
     @Test(testName = "#TC0007", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")

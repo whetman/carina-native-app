@@ -28,30 +28,28 @@ public abstract class QuantityBase extends AbstractUIObject {
 
     public boolean clickPlus(int number) {
         LOGGER.info("clickPlus(" + number + ")");
-        if(number < 0){
-            throw new IllegalArgumentException("Number must be grater that 0");
-        }
         String value = amount.getAttribute("value");
-        for(int i = 0; i < number; i++){
-            plusButton.click();
-        }
-        String changedValue = amount.getAttribute("value");
-        return Integer.parseInt(changedValue) - Integer.parseInt(value) == number;
+        return buttonClick(number, value, plusButton) - Integer.parseInt(value) == number;
     }
 
     public boolean clickMinus(int number) {
         LOGGER.info("clickMinus(" + number + ")");
-        if(number < 0){
-            throw new IllegalArgumentException("Number must be grater that 0");
-        }
         String value = amount.getAttribute("value");
-        if(number > Integer.parseInt(value)){
+        if (number > Integer.parseInt(value)) {
             throw new IllegalArgumentException("Number must be less than existing quantity");
         }
-        for(int i = 0; i < number; i++){
-            minusButton.click();
+        return buttonClick(number, value, minusButton) + number == Integer.parseInt(value);
+    }
+
+    private Integer buttonClick(int number, String value, ExtendedWebElement extendedWebElement) {
+        LOGGER.info("buttonClick()");
+        if (number < 0) {
+            throw new IllegalArgumentException("Number must be grater that 0");
+        }
+        for (int i = 0; i < number; i++) {
+            extendedWebElement.click();
         }
         String changedValue = amount.getAttribute("value");
-        return Integer.parseInt(changedValue) + number == Integer.parseInt(value);
+        return Integer.parseInt(changedValue);
     }
 }
