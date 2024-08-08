@@ -24,7 +24,7 @@ public class SortingIOS extends SortingBase{
 
     public SortingIOS(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
-        LOGGER.info("Sorting");
+        LOGGER.info("Sorting()");
     }
 
     @Override

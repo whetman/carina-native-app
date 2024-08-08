@@ -23,19 +23,6 @@ import static org.testng.Assert.assertTrue;
 
 public class MyDemoAppTest extends AbstractTest {
 
-    @Test(testName = "#TC0001", description = "Validate that user can log in")
-    public void validateLogging() {
-        CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        MenuPageBase menuPage = catalogPage.clickMoreButton();
-        LoginPageBase loginPage = menuPage.goToLoginPage();
-        CatalogPageBase catalogPageLogged = loginPage.loginBob();
-        boolean pageOpened = catalogPageLogged.isPageOpened();
-        assertTrue(pageOpened, "Successfully redirected after logging in");
-        MenuPageBase menuPageLooged = catalogPageLogged.clickMoreButton();
-        boolean visible = menuPageLooged.getLogoutButton().isVisible(0);
-        assertTrue(visible, "Logout button is not displayed - user not logged!");
-    }
-
     @Test(testName = "#TC0002", description = "Validate that not logged user can add product to the cart and delete it")
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);

@@ -58,6 +58,12 @@ public class CatalogPage extends CatalogPageBase {
         LOGGER.info("getLastProductDescription()");
         return products.getLast().getProductAttributes().getFirst().getAttribute("name");
     }
+//
+//    public ProductIOS getRandomProduct(){
+//        LOGGER.info("getRandomProduct()");
+//        int index = RandomIndex.randomize(products.size());
+//        return products.get(index);
+//    }
 
     @Override
     public ProductPageBase clickProduct(int index) {

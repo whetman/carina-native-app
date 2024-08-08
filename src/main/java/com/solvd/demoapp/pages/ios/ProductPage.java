@@ -51,7 +51,7 @@ public class ProductPage extends ProductPageBase {
 
     public ProductPage(WebDriver driver) {
         super(driver);
-        LOGGER.info("ProductPageBase()");
+        LOGGER.info("ProductPage()");
         setUiLoadedMarker(addToCartButton);
     }
 
