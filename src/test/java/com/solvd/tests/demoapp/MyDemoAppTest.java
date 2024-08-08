@@ -8,6 +8,7 @@ import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.DrawingPageBase;
 import com.solvd.demoapp.pages.common.GeoLocationPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
+import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.RightMenuPageBase;
 import com.solvd.demoapp.pages.common.SauceLabsBase;
@@ -26,13 +27,13 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(testName = "#TC0001", description = "Validate that user can log in")
     public void validateLogging() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
-        LoginPageBase loginPage = rightMenuPage.goToLoginPage();
+        MenuPageBase menuPage = catalogPage.clickMoreButton();
+        LoginPageBase loginPage = menuPage.goToLoginPage();
         CatalogPageBase catalogPageLogged = loginPage.loginBob();
         boolean pageOpened = catalogPageLogged.isPageOpened();
         assertTrue(pageOpened, "Successfully redirected after logging in");
-        RightMenuPageBase rightMenuPageLogged = catalogPageLogged.clickMoreButton();
-        boolean visible = rightMenuPageLogged.getLogoutButton().isVisible(0);
+        MenuPageBase menuPageLooged = catalogPageLogged.clickMoreButton();
+        boolean visible = menuPageLooged.getLogoutButton().isVisible(0);
         assertTrue(visible, "Logout button is not displayed - user not logged!");
     }
 
@@ -102,7 +103,7 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
-        catalogPage.changeSortingNameDesc();
+        catalogPage.changeSortingNameDesc(); //todo fix wait conditions for getAttributes0
         String firstProductDesc = catalogPage.getProducts().getFirst().getProductAttributes().getFirst().getAttribute("name");
         String lastProductDesc = catalogPage.getProducts().getLast().getProductAttributes().getFirst().getAttribute("name");
         int descending = firstProductDesc.compareTo(lastProductDesc);
@@ -118,8 +119,8 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(testName = "#TC0007", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
     public void validateDrawing() throws IOException, ImageException {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
-        DrawingPageBase drawingPage = rightMenuPage.clickDrawingButton();
+        MenuPageBase menuPage = catalogPage.clickMoreButton();
+        DrawingPageBase drawingPage = menuPage.clickDrawingButton();
         boolean draw = drawingPage.draw(194, 523, 91, 274);
         assertTrue(draw, "Drawing was not completed successfully");
     }
@@ -127,8 +128,8 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(testName = "#TC0008", description = "Validate that not logged user can successfully redirect from the app to the company page")
     public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
-        AboutPageBase aboutPage = rightMenuPage.clickAboutButton();
+        MenuPageBase menuPage = catalogPage.clickMoreButton();
+        AboutPageBase aboutPage = menuPage.clickAboutButton();
         SauceLabsBase sauceLabs = aboutPage.goToSauceLabsPage();
         boolean pageOpened = sauceLabs.isPageOpened();
         assertTrue(pageOpened, "Redirection was not performed successfully!");
@@ -137,22 +138,26 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(testName = "#TC0009", description = "Validate that geolocation is showing correct longitude and latitude")
     public void validateGeoLocation() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
-        GeoLocationPageBase geoLocationPage = rightMenuPage.clickGeoLocationButton();
+        MenuPageBase menuPage = catalogPage.clickMoreButton();
+        GeoLocationPageBase geoLocationPage = menuPage.clickGeoLocationButton();
         String latitude = geoLocationPage.getLatitude();
         String longitude = geoLocationPage.getLongitude();
 
         assertTrue(latitude.equals(R.TESTDATA.get("location-latitude"))
                         && longitude.equals(R.TESTDATA.get("location-longitude")),
-                "Geolocation is not valid");
+                "Geolocation is not valid. " +
+                        "Expected latitude: " + R.TESTDATA.get("location-latitude")
+                        + "but found " + latitude
+                        + " expected longitude: " + R.TESTDATA.get("location-longitude")
+                        + " but found " + longitude);
     }
 
     @Test(testName = "#TC0010", description = "Validate that app reset button is working properly")
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        RightMenuPageBase rightMenuPage = catalogPage.clickMoreButton();
-        RightMenuPageBase rightMenuPageAfterReset = rightMenuPage.resetApplication();
-        boolean pageOpened = rightMenuPageAfterReset.isPageOpened();
+        MenuPageBase menuPage = catalogPage.clickMoreButton();
+        MenuPageBase menuPageAfterReset = menuPage.resetApplication();
+        boolean pageOpened = menuPageAfterReset.isPageOpened();
         assertTrue(pageOpened, "Reset done successfully");
     }
 }
