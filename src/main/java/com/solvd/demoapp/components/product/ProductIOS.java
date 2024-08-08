@@ -1,5 +1,6 @@
 package com.solvd.demoapp.components.product;
 
+import com.solvd.demoapp.components.rating.Rating;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
@@ -14,8 +15,8 @@ import java.util.List;
 public class ProductIOS extends ProductBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductIOS.class);
 
-//    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther")
-//    private RatingIOS rating;
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther")
+    private Rating rating;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText")
     private List<ExtendedWebElement> productAttributes;
@@ -28,7 +29,7 @@ public class ProductIOS extends ProductBase {
     @Override
     public void rateProduct() {
         LOGGER.info("rateProduct()");
-//        rating.clickRandomSelectedStar();
+        rating.clickRandomSelectedStar();
     }
 
 }

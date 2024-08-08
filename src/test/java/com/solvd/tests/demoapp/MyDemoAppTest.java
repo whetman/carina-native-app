@@ -98,7 +98,6 @@ public class MyDemoAppTest extends AbstractTest {
     /**
      * Sorting by price doesn't work properly on the app - it is not sorting products by price, just changing the order of them, so I am not covering it in this test.
      */
-    //todo flaky, fix it
     @Test(testName = "#TC0006", description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);

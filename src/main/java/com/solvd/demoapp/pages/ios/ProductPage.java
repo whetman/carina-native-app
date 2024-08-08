@@ -1,8 +1,7 @@
 package com.solvd.demoapp.pages.ios;
 
 import com.solvd.demoapp.components.colors.Color;
-import com.solvd.demoapp.components.quantity.Quantity;
-import com.solvd.demoapp.components.quantity.QuantityBase;
+import com.solvd.demoapp.components.quantity.QuantityIOS;
 import com.solvd.demoapp.components.rating.Rating;
 import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
@@ -42,7 +41,7 @@ public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
-    private Quantity quantity;
+    private QuantityIOS quantity;
 
     @ExtendedFindBy(accessibilityId = "Cart-tab-item")
     private ExtendedWebElement cartButton;
