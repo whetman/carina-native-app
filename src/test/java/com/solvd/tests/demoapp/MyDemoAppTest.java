@@ -10,7 +10,6 @@ import com.solvd.demoapp.pages.common.GeoLocationPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
-import com.solvd.demoapp.pages.common.RightMenuPageBase;
 import com.solvd.demoapp.pages.common.SauceLabsBase;
 import com.solvd.tests.AbstractTest;
 import com.zebrunner.carina.utils.R;
@@ -99,19 +98,20 @@ public class MyDemoAppTest extends AbstractTest {
     /**
      * Sorting by price doesn't work properly on the app - it is not sorting products by price, just changing the order of them, so I am not covering it in this test.
      */
+    //todo flaky, fix it
     @Test(testName = "#TC0006", description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
         catalogPage.changeSortingNameDesc(); //todo fix wait conditions for getAttributes0
-        String firstProductDesc = catalogPage.getProducts().getFirst().getProductAttributes().getFirst().getAttribute("name");
-        String lastProductDesc = catalogPage.getProducts().getLast().getProductAttributes().getFirst().getAttribute("name");
+        String firstProductDesc = catalogPage.getFirstProductDescription();
+        String lastProductDesc = catalogPage.getLastProductDescription();
         int descending = firstProductDesc.compareTo(lastProductDesc);
         assertTrue(descending > 0, "Products are not sorted by names - descending");
 
         catalogPage.changeSortingNameAsc();
-        String firstProductAsc = catalogPage.getProducts().getFirst().getProductAttributes().getFirst().getAttribute("name");
-        String lastProductAsc = catalogPage.getProducts().getLast().getProductAttributes().getFirst().getAttribute("name");
+        String firstProductAsc = catalogPage.getFirstProductDescription();
+        String lastProductAsc = catalogPage.getLastProductDescription();
         int ascending = firstProductAsc.compareTo(lastProductAsc);
         assertTrue(ascending <= 0, "Products are not sorted by names - ascending");
     }

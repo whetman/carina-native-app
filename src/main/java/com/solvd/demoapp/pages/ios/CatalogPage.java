@@ -1,7 +1,7 @@
 package com.solvd.demoapp.pages.ios;
 
 import com.solvd.demoapp.components.header.Header;
-import com.solvd.demoapp.components.product.Product;
+import com.solvd.demoapp.components.product.ProductIOS;
 import com.solvd.demoapp.components.sorting.Sorting;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
@@ -12,6 +12,7 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
+import org.apache.commons.math3.stat.descriptive.summary.Product;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class CatalogPage extends CatalogPageBase {
     private ExtendedWebElement catalogScreen;
 
     @ExtendedFindBy(iosPredicate = "name == \"ProductItem\"")
-    private List<Product> products;
+    private List<ProductIOS> products;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Button\"`]")
     private ExtendedWebElement sortButton;
@@ -45,6 +46,18 @@ public class CatalogPage extends CatalogPageBase {
         super(driver);
         LOGGER.info("CatalogPage()");
         setUiLoadedMarker(catalogScreen);
+    }
+
+    @Override
+    public String getFirstProductDescription() {
+        LOGGER.info("getFirstProductDescription()");
+        return products.getFirst().getProductAttributes().getFirst().getAttribute("name");
+    }
+
+    @Override
+    public String getLastProductDescription() {
+        LOGGER.info("getLastProductDescription()");
+        return products.getLast().getProductAttributes().getFirst().getAttribute("name");
     }
 
     @Override
@@ -73,7 +86,7 @@ public class CatalogPage extends CatalogPageBase {
     public ExtendedWebElement rateRandomProduct() {
         int index = RandomIndex.randomize(products.size());
         LOGGER.info("rateRandomProduct(" + index + ")");
-        Product product = products.get(index);
+        ProductIOS product = products.get(index);
         product.rateProduct();
         return okButton;
     }

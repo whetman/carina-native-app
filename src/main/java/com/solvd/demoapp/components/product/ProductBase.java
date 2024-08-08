@@ -12,23 +12,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-@Getter
 public abstract class ProductBase extends AbstractUIObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductBase.class);
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther")
-    private Rating rating;
-
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText")
-    private List<ExtendedWebElement> productAttributes;
 
     public ProductBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public void rateProduct() {
-        LOGGER.info("rateProduct()");
-        rating.clickRandomSelectedStar();
-    }
+    public abstract void rateProduct();
 
+    public abstract List<ExtendedWebElement> getProductAttributes();
 }
