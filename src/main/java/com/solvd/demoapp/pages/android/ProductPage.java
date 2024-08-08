@@ -1,8 +1,9 @@
-package com.solvd.demoapp.pages.ios;
+package com.solvd.demoapp.pages.android;
 
 import com.solvd.demoapp.components.colors.Color;
-import com.solvd.demoapp.components.quantity.QuantityIOS;
-import com.solvd.demoapp.components.rating.RatingIOS;
+import com.solvd.demoapp.components.header.Header;
+import com.solvd.demoapp.components.quantity.QuantityBase;
+import com.solvd.demoapp.components.rating.RatingAndroid;
 import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
@@ -10,9 +11,10 @@ import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
+
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,33 +22,30 @@ import java.util.List;
 import java.util.Random;
 
 @Getter
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProductPageBase.class)
 public class ProductPage extends ProductPageBase {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductPageBase.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductPage.class);
 
-    @ExtendedFindBy(iosPredicate = "name == \"AddToCart\"")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/cartBt")
     private ExtendedWebElement addToCartButton;
 
-    @ExtendedFindBy(accessibilityId = "Price")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/priceTV")
     private ExtendedWebElement price;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
-            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
-    private RatingIOS rating;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/rattingV")
+    private RatingAndroid rating;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
-            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/colorRV")
     private List<Color> color;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
-            "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[4]")
-    private QuantityIOS quantity;
+    @FindBy(xpath = "//android.widget.LinearLayout[@resource-id=\"com.saucelabs.mydemoapp.android:id/addToCartLL\"]")
+    private QuantityBase quantity;
 
-    @ExtendedFindBy(accessibilityId = "Cart-tab-item")
-    private ExtendedWebElement cartButton;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/header")
+    private Header header;
 
-    @ExtendedFindBy(accessibilityId = "OK")
-    protected ExtendedWebElement okButton;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/closeBt")
+    protected ExtendedWebElement continueButton;
 
     public ProductPage(WebDriver driver) {
         super(driver);
@@ -70,8 +69,8 @@ public class ProductPage extends ProductPageBase {
     @Override
     public ExtendedWebElement rateProduct() {
         LOGGER.info("rateProduct()");
-        rating.clickRandomSelectedStar();
-        return okButton;
+        rating.clickRandomStar();
+        return continueButton;
     }
 
     @Override
@@ -114,7 +113,7 @@ public class ProductPage extends ProductPageBase {
     @Override
     public CartPageBase clickCartButton() {
         LOGGER.info("clickCartButton()");
-        cartButton.click();
+        header.getCartButton().click();
         return initPage(getDriver(), CartPageBase.class);
     }
 

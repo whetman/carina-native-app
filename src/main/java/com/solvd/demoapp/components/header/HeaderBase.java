@@ -8,6 +8,7 @@ import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +16,13 @@ import org.slf4j.LoggerFactory;
 public abstract class HeaderBase extends AbstractUIObject {
     private static final Logger LOGGER = LoggerFactory.getLogger(HeaderBase.class);
 
-    @ExtendedFindBy(accessibilityId = "View menu")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/menuIV")
     private ExtendedWebElement menuButton;
 
-    @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/sortIV")
     private SortingAndroid sorting;
 
-    @ExtendedFindBy(accessibilityId = "Displays number of items in your cart")
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/cartIV")
     private ExtendedWebElement cartButton;
 
     public HeaderBase(WebDriver driver, SearchContext searchContext) {

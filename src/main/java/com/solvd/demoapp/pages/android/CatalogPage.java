@@ -1,8 +1,8 @@
-package com.solvd.demoapp.pages.ios;
+package com.solvd.demoapp.pages.android;
 
 import com.solvd.demoapp.components.header.Header;
-import com.solvd.demoapp.components.product.ProductIOS;
-import com.solvd.demoapp.components.sorting.SortingIOS;
+import com.solvd.demoapp.components.product.ProductAndroid;
+import com.solvd.demoapp.components.sorting.SortingAndroid;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
@@ -10,53 +10,41 @@ import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.utils.RandomIndex;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 @Getter
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = CatalogPageBase.class)
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CatalogPageBase.class)
 public class CatalogPage extends CatalogPageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(CatalogPage.class);
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"Catalog-screen\"`]")
-    private ExtendedWebElement catalogScreen;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/header")
+    private Header header;
 
-    @ExtendedFindBy(iosPredicate = "name == \"ProductItem\"")
-    private List<ProductIOS> products;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/productTV")
+    private ExtendedWebElement pageTitle;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Button\"`]")
+    @FindBy(xpath = "//androidx.recyclerview.widget.RecyclerView[@content-desc=\"Displays all products of catalog\"]/android.view.ViewGroup")
+    private List<ProductAndroid> products;
+
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/sortIV")
     private ExtendedWebElement sortButton;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[$type == 'XCUIElementTypeButton' AND name == 'Name - Ascending'$][-1]")
-    private SortingIOS sortingIOS;
+    @FindBy(xpath = "//android.widget.FrameLayout[@resource-id=\"android:id/content\"]/android.widget.FrameLayout/android.view.ViewGroup")
+    private SortingAndroid sorting;
 
-    @ExtendedFindBy(accessibilityId = "More-tab-item")
-    private ExtendedWebElement moreButton;
-
-    @ExtendedFindBy(accessibilityId = "OK")
-    protected ExtendedWebElement okButton;
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/closeBt")
+    protected ExtendedWebElement continueButton;
 
     public CatalogPage(WebDriver driver) {
         super(driver);
         LOGGER.info("CatalogPage()");
-        setUiLoadedMarker(catalogScreen);
-    }
-
-    @Override
-    public String getFirstProductDescription() {
-        LOGGER.info("getFirstProductDescription()");
-        return products.getFirst().getProductAttributes().getFirst().getAttribute("name");
-    }
-
-    @Override
-    public String getLastProductDescription() {
-        LOGGER.info("getLastProductDescription()");
-        return products.getLast().getProductAttributes().getFirst().getAttribute("name");
+        setUiLoadedMarker(pageTitle);
     }
 
     @Override
@@ -78,44 +66,49 @@ public class CatalogPage extends CatalogPageBase {
     public ExtendedWebElement rateRandomProduct() {
         int index = RandomIndex.randomize(products.size());
         LOGGER.info("rateRandomProduct(" + index + ")");
-        ProductIOS product = products.get(index);
+        ProductAndroid product = products.get(index);
         product.rateProduct();
-        return okButton;
+        return continueButton;
     }
 
     @Override
     public void changeSortingNameAsc() {
         LOGGER.info("changeSortingNameAsc()");
         sortButton.click();
-        sortingIOS.clickNameAsc();
+        sorting.clickNameAsc();
     }
 
     @Override
     public void changeSortingNameDesc() {
         LOGGER.info("changeSortingNameDesc()");
         sortButton.click();
-        sortingIOS.clickNameDesc();
+        sorting.clickNameDesc();
     }
 
     @Override
     public void changeSortingPriceAsc() {
         LOGGER.info("changeSortingPriceAsc()");
         sortButton.click();
-        sortingIOS.clickPriceAsc();
+        sorting.clickPriceAsc();
     }
 
     @Override
     public void changeSortingPriceDesc() {
         LOGGER.info("changeSortingPriceDesc()");
         sortButton.click();
-        sortingIOS.clickPriceDesc();
+        sorting.clickPriceDesc();
     }
 
     @Override
-    public MenuPageBase clickMoreButton() {
-        LOGGER.info("clickMoreButton()");
-        moreButton.click();
-        return initPage(getDriver(), MenuPageBase.class);
+    public String getFirstProductDescription() {
+        LOGGER.info("getFirstProductDescription()");
+        return products.getFirst().getProductAttributes().getFirst().getAttribute("name");
+    }
+
+    @Override
+    public String getLastProductDescription() {
+        LOGGER.info("getLastProductDescription()");
+        return products.getLast().getProductAttributes().getFirst().getAttribute("name");
     }
 
     @Override
@@ -129,7 +122,8 @@ public class CatalogPage extends CatalogPageBase {
     }
 
     @Override
-    public Header getHeader() {
+    public MenuPageBase clickMoreButton() {
         return null;
     }
+
 }

@@ -7,7 +7,6 @@ import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.DrawingPageBase;
 import com.solvd.demoapp.pages.common.GeoLocationPageBase;
-import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.SauceLabsBase;
@@ -26,7 +25,8 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(testName = "#TC0002", description = "Validate that not logged user can add product to the cart and delete it")
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        ProductPageBase productPage = catalogPage.addRandomProductToCart();
+        assertTrue(catalogPage.isPageOpened(), "CatalogPage is not open!");
+        ProductPageBase productPage = catalogPage.clickRandomProduct();
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
         boolean removed = cartPage.removeRandomItemFromCart();

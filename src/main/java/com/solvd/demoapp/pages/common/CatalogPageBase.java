@@ -18,8 +18,6 @@ public abstract class CatalogPageBase extends PageBase {
 
     public abstract ProductPageBase clickRandomProduct();
 
-    public abstract ProductPageBase addRandomProductToCart();
-
     public abstract ExtendedWebElement rateRandomProduct();
 
     public abstract void changeSortingNameAsc();
