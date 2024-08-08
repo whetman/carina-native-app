@@ -1,10 +1,7 @@
 package com.solvd.demoapp.components.product;
 
-import com.solvd.demoapp.components.rating.Rating;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
-import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import lombok.Getter;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;

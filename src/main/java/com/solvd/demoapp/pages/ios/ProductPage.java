@@ -2,7 +2,7 @@ package com.solvd.demoapp.pages.ios;
 
 import com.solvd.demoapp.components.colors.Color;
 import com.solvd.demoapp.components.quantity.QuantityIOS;
-import com.solvd.demoapp.components.rating.Rating;
+import com.solvd.demoapp.components.rating.RatingIOS;
 import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
@@ -33,7 +33,7 @@ public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[2]")
-    private Rating rating;
+    private RatingIOS rating;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"ProductDetails-screen\"`]" +
             "/XCUIElementTypeOther[2]/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther[3]/XCUIElementTypeButton")

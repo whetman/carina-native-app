@@ -1,6 +1,6 @@
 package com.solvd.demoapp.components.product;
 
-import com.solvd.demoapp.components.rating.Rating;
+import com.solvd.demoapp.components.rating.RatingIOS;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
@@ -16,7 +16,7 @@ public class ProductIOS extends ProductBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductIOS.class);
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther")
-    private Rating rating;
+    private RatingIOS rating;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText")
     private List<ExtendedWebElement> productAttributes;
