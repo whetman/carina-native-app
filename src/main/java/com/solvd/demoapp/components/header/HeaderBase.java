@@ -1,5 +1,6 @@
 package com.solvd.demoapp.components.header;
 
+import com.solvd.demoapp.components.sorting.SortingAndroid;
 import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.gui.AbstractUIObject;
@@ -17,8 +18,8 @@ public abstract class HeaderBase extends AbstractUIObject {
     @ExtendedFindBy(accessibilityId = "View menu")
     private ExtendedWebElement menuButton;
 
-//    @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
-//    private SortingAndroid sorting;
+    @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
+    private SortingAndroid sorting;
 
     @ExtendedFindBy(accessibilityId = "Displays number of items in your cart")
     private ExtendedWebElement cartButton;

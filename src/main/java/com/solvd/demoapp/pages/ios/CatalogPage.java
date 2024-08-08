@@ -2,7 +2,7 @@ package com.solvd.demoapp.pages.ios;
 
 import com.solvd.demoapp.components.header.Header;
 import com.solvd.demoapp.components.product.ProductIOS;
-import com.solvd.demoapp.components.sorting.Sorting;
+import com.solvd.demoapp.components.sorting.SortingIOS;
 import com.solvd.demoapp.pages.common.CartPageBase;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
@@ -12,7 +12,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import lombok.Getter;
-import org.apache.commons.math3.stat.descriptive.summary.Product;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +33,7 @@ public class CatalogPage extends CatalogPageBase {
     private ExtendedWebElement sortButton;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[$type == 'XCUIElementTypeButton' AND name == 'Name - Ascending'$][-1]")
-    private Sorting sortingIOS;
+    private SortingIOS sortingIOS;
 
     @ExtendedFindBy(accessibilityId = "More-tab-item")
     private ExtendedWebElement moreButton;
