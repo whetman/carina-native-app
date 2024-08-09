@@ -4,13 +4,15 @@ import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.tests.AbstractTest;
+import com.zebrunner.agent.core.annotation.TestCaseKey;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
 public class MyDemoAppIOSTest extends AbstractTest {
 
-    @Test(testName = "ANDT-13", description = "Validate that user can log in")
+    @TestCaseKey("ANDT-13")
+    @Test(description = "Validate that user can log in")
     public void validateLogging() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase MenuPage = catalogPage.clickMoreButton();

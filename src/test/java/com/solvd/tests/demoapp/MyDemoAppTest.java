@@ -11,6 +11,7 @@ import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.SauceLabsBase;
 import com.solvd.tests.AbstractTest;
+import com.zebrunner.agent.core.annotation.TestCaseKey;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import org.testng.annotations.Test;
@@ -22,7 +23,8 @@ import static org.testng.Assert.assertTrue;
 
 public class MyDemoAppTest extends AbstractTest {
 
-    @Test(testName = "#TC0002", description = "Validate that not logged user can add product to the cart and delete it")
+    @TestCaseKey("ANDT-13")
+    @Test(description = "Validate that not logged user can add product to the cart and delete it")
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         assertTrue(catalogPage.isPageOpened(), "CatalogPage is not open!");
@@ -33,7 +35,8 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(removed, "Item was not removed successfully");
     }
 
-    @Test(testName = "#TC0003", description = "Validate that not logged user can rate product on the catalog")
+    @TestCaseKey("ANDT-15")
+    @Test(description = "Validate that not logged user can rate product on the catalog")
     public void validateRatingCatalogPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ExtendedWebElement okButtonCatalog = catalogPage.rateRandomProduct();
@@ -41,7 +44,8 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(okButtonCatalog.isDisplayed(), "OK button on catalog page is not displayed");
     }
 
-    @Test(testName = "#TC0004", description = "Validate that not logged user can rate product on the product page")
+    @TestCaseKey("ANDT-16")
+    @Test(description = "Validate that not logged user can rate product on the product page")
     public void validateRatingProductPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
@@ -52,7 +56,8 @@ public class MyDemoAppTest extends AbstractTest {
         okButtonProduct.click();
     }
 
-    @Test(testName = "#TC0005", description = "Validate that not logged user can add multiple products with different colors/sizes to the cart and delete them from the cart")
+    @TestCaseKey("ANDT-19")
+    @Test(description = "Validate that not logged user can add multiple products with different colors to the cart and delete them from the cart")
     public void validateChangingProductProperties() throws NoSuchFieldException, IllegalAccessException {
         SoftAssert softAssert = new SoftAssert();
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
@@ -85,7 +90,8 @@ public class MyDemoAppTest extends AbstractTest {
     /**
      * Sorting by price doesn't work properly on the app - it is not sorting products by price, just changing the order of them, so I am not covering it in this test.
      */
-    @Test(testName = "#TC0006", description = "Validate that not logged user can change sorting on the catalog page")
+    @TestCaseKey("ANDT-22")
+    @Test(description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
@@ -102,7 +108,8 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(ascending <= 0, "Products are not sorted by names - ascending");
     }
 
-    @Test(testName = "#TC0007", description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
+    @TestCaseKey("ANDT-29")
+    @Test(description = "Validate that not logged user can use the drawing function and successfully save the drawing on the phone")
     public void validateDrawing() throws IOException, ImageException {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
@@ -111,7 +118,8 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(draw, "Drawing was not completed successfully");
     }
 
-    @Test(testName = "#TC0008", description = "Validate that not logged user can successfully redirect from the app to the company page")
+    @TestCaseKey("ANDT-30")
+    @Test(description = "Validate that not logged user can successfully redirect from the app to the company page")
     public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
@@ -121,7 +129,8 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(pageOpened, "Redirection was not performed successfully!");
     }
 
-    @Test(testName = "#TC0009", description = "Validate that geolocation is showing correct longitude and latitude")
+    @TestCaseKey("ANDT-31")
+    @Test(description = "Validate that geolocation is showing correct longitude and latitude")
     public void validateGeoLocation() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
@@ -138,7 +147,8 @@ public class MyDemoAppTest extends AbstractTest {
                         + " but found " + longitude);
     }
 
-    @Test(testName = "#TC0010", description = "Validate that app reset button is working properly")
+    @TestCaseKey("ANDT-32")
+    @Test(description = "Validate that app reset button is working properly")
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();

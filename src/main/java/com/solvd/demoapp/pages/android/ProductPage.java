@@ -2,7 +2,7 @@ package com.solvd.demoapp.pages.android;
 
 import com.solvd.demoapp.components.colors.Color;
 import com.solvd.demoapp.components.header.Header;
-import com.solvd.demoapp.components.quantity.QuantityBase;
+import com.solvd.demoapp.components.quantity.QuantityAndroid;
 import com.solvd.demoapp.components.rating.RatingAndroid;
 import com.solvd.demoapp.constants.Colors;
 import com.solvd.demoapp.pages.common.CartPageBase;
@@ -11,7 +11,6 @@ import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -39,7 +38,7 @@ public class ProductPage extends ProductPageBase {
     private List<Color> color;
 
     @FindBy(xpath = "//android.widget.LinearLayout[@resource-id=\"com.saucelabs.mydemoapp.android:id/addToCartLL\"]")
-    private QuantityBase quantity;
+    private QuantityAndroid quantity;
 
     @FindBy(id = "com.saucelabs.mydemoapp.android:id/header")
     private Header header;
