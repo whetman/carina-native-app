@@ -19,4 +19,5 @@ public abstract class ProductBase extends AbstractUIObject {
     public abstract void rateProduct();
 
     public abstract List<ExtendedWebElement> getProductAttributes();
+
 }

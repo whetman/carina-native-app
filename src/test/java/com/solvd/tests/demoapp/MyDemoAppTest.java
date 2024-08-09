@@ -87,7 +87,6 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
     }
 
-    //todo fix android
     /**
      * Sorting by price doesn't work properly on the app - it is not sorting products by price, just changing the order of them, so I am not covering it in this test.
      */
@@ -96,7 +95,7 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
 
-        catalogPage.changeSortingNameDesc(); //todo fix wait conditions for getAttributes0
+        catalogPage.changeSortingNameDesc();
         String firstProductDesc = catalogPage.getFirstProductDescription();
         String lastProductDesc = catalogPage.getLastProductDescription();
         int descending = firstProductDesc.compareTo(lastProductDesc);

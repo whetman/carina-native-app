@@ -2,13 +2,13 @@ package com.solvd.demoapp.components.product;
 
 import com.solvd.demoapp.components.rating.RatingAndroid;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAndroid extends ProductBase{
@@ -17,8 +17,11 @@ public class ProductAndroid extends ProductBase{
     @FindBy(xpath = ".//android.view.ViewGroup[@resource-id=\"com.saucelabs.mydemoapp.android:id/rattingV\"]")
     private RatingAndroid rating;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText")
-    private List<ExtendedWebElement> productAttributes;
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/titleTV\"]")
+    private ExtendedWebElement productName;
+
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/priceTV\"]")
+    private ExtendedWebElement productPrice;
 
     public ProductAndroid(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
@@ -33,6 +36,10 @@ public class ProductAndroid extends ProductBase{
 
     @Override
     public List<ExtendedWebElement> getProductAttributes() {
-        return null;
+        LOGGER.info("getProductAttributes({}, {})", productName.getText(), productPrice.getText());
+        List<ExtendedWebElement> productAttributes = new ArrayList<>();
+        productAttributes.add(productName);
+        productAttributes.add(productPrice);
+        return productAttributes;
     }
 }
