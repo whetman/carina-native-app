@@ -101,14 +101,13 @@ public class CatalogPage extends CatalogPageBase {
 
     @Override
     public String getFirstProductDescription() {
-        LOGGER.info("####");
-        LOGGER.info("getFirstProductDescription({})", products.getFirst().getProductAttributes().getFirst().getText());
+        LOGGER.info("getFirstProductDescription()");
         return products.getFirst().getProductAttributes().getFirst().getText();
     }
 
     @Override
     public String getLastProductDescription() {
-        LOGGER.info("getLastProductDescription({})", products.getLast().getProductAttributes().getFirst().getText());
+        LOGGER.info("getLastProductDescription()");
         return products.getLast().getProductAttributes().getFirst().getText();
     }
 

@@ -27,11 +27,11 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(description = "Validate that not logged user can add product to the cart and delete it")
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        takeScreenshot();
         assertTrue(catalogPage.isPageOpened(), "CatalogPage is not open!");
         ProductPageBase productPage = catalogPage.clickRandomProduct();
         takeScreenshot();
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
+        takeScreenshot();
 
         boolean removed = cartPage.removeRandomItemFromCart();
         takeScreenshot();
@@ -88,7 +88,6 @@ public class MyDemoAppTest extends AbstractTest {
         softAssert.assertTrue(isQuantityTheSame, "Quantity is not the same");
 
         boolean isRemoved = cartPage.removeItemsWithMinusButton(valueOnProductPage);
-        takeScreenshot();
         softAssert.assertTrue(isRemoved, "Items were not removed successfully");
         softAssert.assertAll();
 
@@ -137,7 +136,6 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(description = "Validate that not logged user can successfully redirect from the app to the company page")
     public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
-        takeScreenshot();
         MenuPageBase menuPage = catalogPage.clickMoreButton();
         AboutPageBase aboutPage = menuPage.clickAboutButton();
         SauceLabsBase sauceLabs = aboutPage.goToSauceLabsPage();
@@ -171,9 +169,7 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
-        takeScreenshot();
         boolean isReseted = menuPage.resetApplication();
-        takeScreenshot();
         assertTrue(isReseted, "Reset done successfully");
     }
 }

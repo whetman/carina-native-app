@@ -1,7 +1,6 @@
 package com.solvd.tests;
 
 import com.solvd.demoapp.pages.common.CatalogPageBase;
-import com.zebrunner.agent.core.registrar.Screenshot;
 import com.zebrunner.carina.core.IAbstractTest;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.utils.mobile.IMobileUtils;
@@ -25,7 +24,7 @@ public abstract class AbstractTest implements IAbstractTest, IMobileUtils {
         try{
             byte[] screenshotBytes = ((TakesScreenshot) getDriver()).getScreenshotAs(OutputType.BYTES);
             long capturedAtMillis = System.currentTimeMillis();
-            Screenshot.upload(screenshotBytes, capturedAtMillis);
+            com.zebrunner.agent.core.registrar.Screenshot.upload(screenshotBytes, capturedAtMillis);
         } catch (Exception e) {
             LOGGER.error("Failed to take or upload screenshot");
         }
