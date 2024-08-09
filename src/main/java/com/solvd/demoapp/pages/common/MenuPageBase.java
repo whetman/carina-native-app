@@ -22,7 +22,7 @@ public abstract class MenuPageBase extends PageBase {
 
     public abstract GeoLocationPageBase clickGeoLocationButton();
 
-    public abstract MenuPageBase resetApplication();
+    public abstract boolean resetApplication();
 
     public abstract ExtendedWebElement getLogoutButton();
 }

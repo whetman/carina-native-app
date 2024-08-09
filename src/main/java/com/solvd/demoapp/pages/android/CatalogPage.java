@@ -112,17 +112,18 @@ public class CatalogPage extends CatalogPageBase {
     }
 
     @Override
+    public MenuPageBase clickMoreButton() {
+        LOGGER.info("clickMoreButton()");
+        return header.openMenu();
+    }
+
+    @Override
     public CatalogPageBase clickCatalogButton() {
         return null;
     }
 
     @Override
     public CartPageBase clickCartButton() {
-        return null;
-    }
-
-    @Override
-    public MenuPageBase clickMoreButton() {
         return null;
     }
 

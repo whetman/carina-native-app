@@ -14,7 +14,7 @@ import java.util.List;
 public class ProductAndroid extends ProductBase{
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductAndroid.class);
 
-    @FindBy(xpath = "(.//android.view.ViewGroup[@resource-id=\"com.saucelabs.mydemoapp.android:id/rattingV\"])")
+    @FindBy(xpath = ".//android.view.ViewGroup[@resource-id=\"com.saucelabs.mydemoapp.android:id/rattingV\"]")
     private RatingAndroid rating;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText")

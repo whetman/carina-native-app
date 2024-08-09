@@ -79,12 +79,11 @@ public class MenuPage extends MenuPageBase {
     }
 
     @Override
-    public MenuPageBase resetApplication(){
+    public boolean resetApplication(){
         LOGGER.info("resetApplication()");
         resetButton.click();
         resetButtonInWindow.click();
-        okButton.click();
-        return initPage(getDriver(), MenuPageBase.class);
+        return okButton.clickIfPresent();
     }
 
     @Override

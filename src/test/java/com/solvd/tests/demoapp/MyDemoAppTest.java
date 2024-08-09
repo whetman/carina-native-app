@@ -56,6 +56,7 @@ public class MyDemoAppTest extends AbstractTest {
         okButtonProduct.click();
     }
 
+    //todo android
     @TestCaseKey("ANDT-19")
     @Test(description = "Validate that not logged user can add multiple products with different colors to the cart and delete them from the cart")
     public void validateChangingProductProperties() throws NoSuchFieldException, IllegalAccessException {
@@ -87,6 +88,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
     }
 
+    //todo fix android
     /**
      * Sorting by price doesn't work properly on the app - it is not sorting products by price, just changing the order of them, so I am not covering it in this test.
      */
@@ -129,6 +131,7 @@ public class MyDemoAppTest extends AbstractTest {
         assertTrue(pageOpened, "Redirection was not performed successfully!");
     }
 
+    //todo fix the lang and lati because android has more accurate location
     @TestCaseKey("ANDT-31")
     @Test(description = "Validate that geolocation is showing correct longitude and latitude")
     public void validateGeoLocation() {
@@ -152,8 +155,7 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
-        MenuPageBase menuPageAfterReset = menuPage.resetApplication();
-        boolean pageOpened = menuPageAfterReset.isPageOpened();
-        assertTrue(pageOpened, "Reset done successfully");
+        boolean isReseted = menuPage.resetApplication();
+        assertTrue(isReseted, "Reset done successfully");
     }
 }
