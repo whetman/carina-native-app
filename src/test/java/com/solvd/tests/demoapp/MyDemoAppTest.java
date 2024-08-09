@@ -27,11 +27,14 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(description = "Validate that not logged user can add product to the cart and delete it")
     public void validateAddingToCart() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        takeScreenshot();
         assertTrue(catalogPage.isPageOpened(), "CatalogPage is not open!");
         ProductPageBase productPage = catalogPage.clickRandomProduct();
+        takeScreenshot();
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
         boolean removed = cartPage.removeRandomItemFromCart();
+        takeScreenshot();
         assertTrue(removed, "Item was not removed successfully");
     }
 
@@ -41,6 +44,7 @@ public class MyDemoAppTest extends AbstractTest {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ExtendedWebElement okButtonCatalog = catalogPage.rateRandomProduct();
 
+        takeScreenshot();
         assertTrue(okButtonCatalog.isDisplayed(), "OK button on catalog page is not displayed");
     }
 
@@ -51,9 +55,8 @@ public class MyDemoAppTest extends AbstractTest {
         ProductPageBase productPage = catalogPage.clickRandomProduct();
         ExtendedWebElement okButtonProduct = productPage.rateProduct();
 
+        takeScreenshot();
         assertTrue(okButtonProduct.isDisplayed(), "OK button on product page is not displayed");
-
-        okButtonProduct.click();
     }
 
     @TestCaseKey("ANDT-19")
@@ -63,27 +66,34 @@ public class MyDemoAppTest extends AbstractTest {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         ProductPageBase productPage = catalogPage.clickRandomProduct();
 
+        takeScreenshot();
         boolean isColorChanged = productPage.selectColor(Colors.GRAY);
+        takeScreenshot();
         softAssert.assertTrue(isColorChanged, "Color was not changed successfully. Something went wrong or chosen color not available");
 
         boolean isQuantityChangedPlus = productPage.changeQuantityAdd();
+        takeScreenshot();
         softAssert.assertTrue(isQuantityChangedPlus, "Quantity was not added successfully");
 
         boolean isQuantityChangedMinus = productPage.changeQuantityRemove();
+        takeScreenshot();
         softAssert.assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
 
         String valueOnProductPage = productPage.getQuantity().getAmount().getText();
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
         String valueInTheCart = cartPage.getValue();
+        takeScreenshot();
         boolean isQuantityTheSame = valueInTheCart.equals(valueOnProductPage);
         softAssert.assertTrue(isQuantityTheSame, "Quantity is not the same");
 
         boolean isRemoved = cartPage.removeItemsWithMinusButton(valueOnProductPage);
+        takeScreenshot();
         softAssert.assertTrue(isRemoved, "Items were not removed successfully");
         softAssert.assertAll();
 
         boolean isGoShoppingVisible = cartPage.isGoShoppingButtonVisible();
+        takeScreenshot();
         assertTrue(isGoShoppingVisible, "Go shopping button is not visible");
     }
 
@@ -94,14 +104,17 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(description = "Validate that not logged user can change sorting on the catalog page")
     public void validateSorting() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        takeScreenshot();
 
         catalogPage.changeSortingNameDesc();
+        takeScreenshot();
         String firstProductDesc = catalogPage.getFirstProductDescription();
         String lastProductDesc = catalogPage.getLastProductDescription();
         int descending = firstProductDesc.compareTo(lastProductDesc);
         assertTrue(descending > 0, "Products are not sorted by names - descending");
 
         catalogPage.changeSortingNameAsc();
+        takeScreenshot();
         String firstProductAsc = catalogPage.getFirstProductDescription();
         String lastProductAsc = catalogPage.getLastProductDescription();
         int ascending = firstProductAsc.compareTo(lastProductAsc);
@@ -114,7 +127,9 @@ public class MyDemoAppTest extends AbstractTest {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
         DrawingPageBase drawingPage = menuPage.clickDrawingButton();
+        takeScreenshot();
         boolean draw = drawingPage.draw(194, 523, 91, 274);
+        takeScreenshot();
         assertTrue(draw, "Drawing was not completed successfully");
     }
 
@@ -122,10 +137,12 @@ public class MyDemoAppTest extends AbstractTest {
     @Test(description = "Validate that not logged user can successfully redirect from the app to the company page")
     public void validateAboutPage() {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
+        takeScreenshot();
         MenuPageBase menuPage = catalogPage.clickMoreButton();
         AboutPageBase aboutPage = menuPage.clickAboutButton();
         SauceLabsBase sauceLabs = aboutPage.goToSauceLabsPage();
         boolean pageOpened = sauceLabs.isPageOpened();
+        takeScreenshot();
         assertTrue(pageOpened, "Redirection was not performed successfully!");
     }
 
@@ -136,6 +153,7 @@ public class MyDemoAppTest extends AbstractTest {
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
         GeoLocationPageBase geoLocationPage = menuPage.clickGeoLocationButton();
+        takeScreenshot();
         String latitude = geoLocationPage.getLatitude();
         String longitude = geoLocationPage.getLongitude();
 
@@ -153,7 +171,9 @@ public class MyDemoAppTest extends AbstractTest {
     public void validateResetting(){
         CatalogPageBase catalogPage = initPage(getDriver(), CatalogPageBase.class);
         MenuPageBase menuPage = catalogPage.clickMoreButton();
+        takeScreenshot();
         boolean isReseted = menuPage.resetApplication();
+        takeScreenshot();
         assertTrue(isReseted, "Reset done successfully");
     }
 }

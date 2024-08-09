@@ -18,6 +18,7 @@ public class MyDemoAppAndroidTest extends AbstractTest {
         MenuPageBase menuPage = catalogPage.getHeader().openMenu();
         LoginPageBase loginPage = menuPage.goToLoginPage();
         CatalogPageBase catalogPageLogged = loginPage.loginBob();
+        takeScreenshot();
         boolean pageOpened = catalogPageLogged.isPageOpened();
         assertTrue(pageOpened, "Logging in failed!");
     }

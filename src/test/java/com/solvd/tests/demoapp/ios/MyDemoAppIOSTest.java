@@ -18,9 +18,11 @@ public class MyDemoAppIOSTest extends AbstractTest {
         MenuPageBase MenuPage = catalogPage.clickMoreButton();
         LoginPageBase loginPage = MenuPage.goToLoginPage();
         CatalogPageBase catalogPageLogged = loginPage.loginBob();
+        takeScreenshot();
         boolean pageOpened = catalogPageLogged.isPageOpened();
         assertTrue(pageOpened, "Successfully redirected after logging in");
         MenuPageBase rightMenuPageLogged = catalogPageLogged.clickMoreButton();
+        takeScreenshot();
         boolean visible = rightMenuPageLogged.getLogoutButton().isVisible(0);
         assertTrue(visible, "Logout button is not displayed - user not logged!");
     }
