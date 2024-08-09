@@ -18,7 +18,7 @@ public class QuantityAndroid extends QuantityBase{
     @FindBy(id = "com.saucelabs.mydemoapp.android:id/minusIV")
     private ExtendedWebElement minusButton;
 
-    @FindBy(id = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/noTV\"]")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/noTV\"]")
     private ExtendedWebElement amount;
 
     public QuantityAndroid(WebDriver driver, SearchContext searchContext) {
@@ -29,14 +29,14 @@ public class QuantityAndroid extends QuantityBase{
     @Override
     public boolean clickPlus(int number) {
         LOGGER.info("clickPlus(" + number + ")");
-        String value = amount.getAttribute("value");
+        String value = amount.getText();
         return buttonClick(number, value, plusButton) - Integer.parseInt(value) == number;
     }
 
     @Override
     public boolean clickMinus(int number) {
         LOGGER.info("clickMinus(" + number + ")");
-        String value = amount.getAttribute("value");
+        String value = amount.getText();
         if (number > Integer.parseInt(value)) {
             throw new IllegalArgumentException("Number must be less than existing quantity");
         }
@@ -51,7 +51,7 @@ public class QuantityAndroid extends QuantityBase{
         for (int i = 0; i < number; i++) {
             extendedWebElement.click();
         }
-        String changedValue = amount.getAttribute("value");
+        String changedValue = amount.getText();
         return Integer.parseInt(changedValue);
     }
 }

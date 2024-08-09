@@ -56,7 +56,6 @@ public class MyDemoAppTest extends AbstractTest {
         okButtonProduct.click();
     }
 
-    //todo android
     @TestCaseKey("ANDT-19")
     @Test(description = "Validate that not logged user can add multiple products with different colors to the cart and delete them from the cart")
     public void validateChangingProductProperties() throws NoSuchFieldException, IllegalAccessException {
@@ -73,7 +72,7 @@ public class MyDemoAppTest extends AbstractTest {
         boolean isQuantityChangedMinus = productPage.changeQuantityRemove();
         softAssert.assertTrue(isQuantityChangedMinus, "Quantity was not removed successfully");
 
-        String valueOnProductPage = productPage.getQuantity().getAmount().getAttribute("value");
+        String valueOnProductPage = productPage.getQuantity().getAmount().getText();
         CartPageBase cartPage = productPage.addToCartAndGoToCart();
 
         String valueInTheCart = cartPage.getValue();

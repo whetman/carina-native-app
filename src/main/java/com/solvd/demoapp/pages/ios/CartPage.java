@@ -78,7 +78,7 @@ public class CartPage extends CartPageBase {
     @Override
     public boolean isGoShoppingButtonVisible() {
         LOGGER.info("isGoShoppingButtonVisible()");
-        return goShoppingButton.isVisible();
+        return goShoppingButton.isVisible(0);
     }
 
     @Override

@@ -96,7 +96,7 @@ public class ProductPage extends ProductPageBase {
     @Override
     public boolean changeQuantityRemove() {
         LOGGER.info("changeQuantityRemove()");
-        String value = quantity.getAmount().getAttribute("value");
+        String value = quantity.getAmount().getText();
         if (Integer.parseInt(value) > 0) {
             Random rand = new Random();
             int number = rand.nextInt(Integer.parseInt(value));
