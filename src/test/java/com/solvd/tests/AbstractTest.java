@@ -27,11 +27,8 @@ public abstract class AbstractTest implements IAbstractTest, IMobileUtils {
     @AfterSuite
     public void clearScreenshotDirectory() throws IOException {
         LOGGER.info("clearScreenshotDirectory()");
-        String directory = "screenshots/";
-        String before = "screenshots/screenshotBefore.png";
-        String after = "screenshots/screenshotAfter.png";
-        Files.deleteIfExists(Paths.get(before));
-        Files.deleteIfExists(Paths.get(after));
-        Files.deleteIfExists(Paths.get(directory));
+        Files.deleteIfExists(Paths.get(R.CONFIG.get("beforeScreenshotDirectory")));
+        Files.deleteIfExists(Paths.get(R.CONFIG.get("afterScreenshotDirectory")));
+        Files.deleteIfExists(Paths.get(R.CONFIG.get("screenshotDirectory")));
     }
 }
