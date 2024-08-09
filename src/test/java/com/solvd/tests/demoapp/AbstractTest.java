@@ -1,4 +1,4 @@
-package com.solvd.tests;
+package com.solvd.tests.demoapp;
 
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.zebrunner.carina.core.IAbstractTest;

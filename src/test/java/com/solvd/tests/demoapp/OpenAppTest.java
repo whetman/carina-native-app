@@ -1,7 +1,6 @@
 package com.solvd.tests.demoapp;
 
 import com.solvd.demoapp.pages.common.CatalogPageBase;
-import com.solvd.tests.AbstractTest;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
