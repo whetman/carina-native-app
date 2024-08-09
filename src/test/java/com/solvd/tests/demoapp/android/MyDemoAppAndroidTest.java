@@ -3,7 +3,7 @@ package com.solvd.tests.demoapp.android;
 import com.solvd.demoapp.pages.common.CatalogPageBase;
 import com.solvd.demoapp.pages.common.LoginPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
-import com.solvd.tests.demoapp.AbstractTest;
+import com.solvd.tests.AbstractTest;
 import com.zebrunner.agent.core.annotation.TestCaseKey;
 import org.testng.annotations.Test;
 

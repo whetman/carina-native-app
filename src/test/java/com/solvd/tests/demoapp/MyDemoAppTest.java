@@ -10,6 +10,7 @@ import com.solvd.demoapp.pages.common.GeoLocationPageBase;
 import com.solvd.demoapp.pages.common.MenuPageBase;
 import com.solvd.demoapp.pages.common.ProductPageBase;
 import com.solvd.demoapp.pages.common.SauceLabsBase;
+import com.solvd.tests.AbstractTest;
 import com.zebrunner.agent.core.annotation.TestCaseKey;
 import com.zebrunner.carina.utils.R;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
