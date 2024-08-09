@@ -1,8 +1,6 @@
 package com.solvd.demoapp.pages.common;
 
 import com.solvd.demoapp.exception.ImageException;
-import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
-import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,18 +17,8 @@ import java.nio.file.Paths;
 public abstract class DrawingPageBase extends PageBase {
     private static final Logger LOGGER = LoggerFactory.getLogger(DrawingPageBase.class);
 
-    @ExtendedFindBy(accessibilityId = "DrawingBackground Icons")
-    private ExtendedWebElement drawingBackground;
-
-    @ExtendedFindBy(accessibilityId = "SaveButton Icons")
-    private ExtendedWebElement saveButton;
-
-    @ExtendedFindBy(accessibilityId = "ClearButton Icons")
-    private ExtendedWebElement clearButton;
-
     public DrawingPageBase(WebDriver driver) {
         super(driver);
-        setUiLoadedMarker(drawingBackground);
     }
 
     public boolean draw(int x, int y, int xa, int ya) throws IOException, ImageException {
@@ -69,4 +57,5 @@ public abstract class DrawingPageBase extends PageBase {
         }
         return false;
     }
+
 }
